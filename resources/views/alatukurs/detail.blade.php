@@ -116,7 +116,7 @@
         <div class="col-md-7">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Riwayat Kalibrasi</h3>
+                    <h3 class="box-title">Riwayat Kalibrasii</h3>
                 </div>
                 <div class="box-body">
                     <table id="p" class="dataTables_wrapper form-inline dt-bootstrap" style="width:100%">
