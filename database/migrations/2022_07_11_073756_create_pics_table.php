@@ -18,7 +18,7 @@ class CreatePicsTable extends Migration
             $table->string('idkaryawan');
             $table->string('nama_pic');
             $table->integer('departemen_id')->unsigned();
-            $table->string('foto');
+            $table->string('foto')->nullable();
             $table->timestamps();
 
             $table->foreign('departemen_id')->references('id')->on('departemens')->onDelete('cascade');

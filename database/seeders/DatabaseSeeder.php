@@ -7,6 +7,7 @@ use App\User;
 use App\Departemen;
 use App\LokasiAlatukur;
 use App\Maker;
+use App\Pic;
 use App\TempatKalibrasi;
 
 class DatabaseSeeder extends Seeder
@@ -41,6 +42,13 @@ class DatabaseSeeder extends Seeder
         TempatKalibrasi::create([
             'tempat_kalibrasi' => 'www',
             'alamat' => 'bekasi',
+        ]);
+
+        Pic::create([
+            'idkaryawan' => '1a2b',
+            'nama_pic' => 'ajiz',
+            'departemen_id' => '1',
+            'departemen_id' => '1',
         ]);
     }
 }
