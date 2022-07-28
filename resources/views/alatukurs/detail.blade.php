@@ -119,18 +119,17 @@
                     <h3 class="box-title">Riwayat Kalibrasii</h3>
                 </div>
                 <div class="box-body">
-                    <table id="p" class="dataTables_wrapper form-inline dt-bootstrap" style="width:100%">
-                    {{-- <table id="p" class="table table-striped table-bordered" style="width:100%"> --}}
+                    {{-- <table id="p" class="dataTables_wrapper form-inline dt-bootstrap" style="width:100%"> --}}
+                    <table id="p" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Nama Alat Ukur</th>
+                            <th>Nama Alat Ukurr</th>
                             <th>Tanggal Kalibrasi</th>
                             <th>Tanggal Next Kalibrasi</th>
                             <th>Tanggal Sertifikat</th>
                             <th>Sertifikat</th>
                             <th>Status</th>
-                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -192,4 +191,4 @@
             });
     </script>
 
-    @endsection
+@endsection

@@ -20,27 +20,27 @@
 
         <!-- /.box-header -->
         <div class="box-body">
-            <table id="alatukurs-table" class="table table-striped">
+            {{-- <table id="alatukurs-table" class="table table-striped"> --}}
+            <table id="p" class="dataTables_wrapper form-inline dt-bootstrap" style="width:100%">
                 <thead>
                 <tr>
                     <th>No.</th>
-                    <th>Nama Alat</th>
+                    <th>Nama Alatt</th>
                     <th>Nomor Seri</th>
                     <th>Nomor Registrasi</th>
                     <th>Gambar</th>
-                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($rusak as $akur)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $akur->nama_alat }}</td> 
-                    <td>{{ $akur->no_seri }}</td> 
-                    <td>{{ $akur->no_reg }}</td>
-                    <!-- asset('storage/'.$alatukurz->gambar) -->
-                    <td><img class="rounded-square" width="50" height="50" src="{{asset('storage/'.$akur->gambar)}}" alt=""></td>
-                </tr>
+                    @foreach ($rusak as $akur)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $akur->nama_alat }}</td> 
+                        <td>{{ $akur->no_seri }}</td> 
+                        <td>{{ $akur->no_reg }}</td>
+                        <!-- asset('storage/'.$alatukurz->gambar) -->
+                        <td><img class="rounded-square" width="50" height="50" src="{{asset('storage/'.$akur->gambar)}}" alt=""></td>
+                    </tr>
                 @endforeach
                 </tbody>
             </table>
@@ -52,8 +52,14 @@
 
 @section('bot')
 
+<script>
+    $(document).ready( function () {
+    $('#p').DataTable();
+    });
+</script>
+
     <!-- DataTables -->
-    <script src=" {{ asset('assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }} "></script>
+    <script src="{{ asset('assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }} "></script>
     
     <!-- InputMask -->
@@ -72,5 +78,6 @@
 
     {{-- Validator --}}
     <script src="{{ asset('assets/validator/validator.min.js') }}"></script>
+    
 
 @endsection
