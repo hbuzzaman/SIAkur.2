@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 use App\Pic;
 use App\Departemen;
@@ -58,8 +59,14 @@ class PicController extends Controller
 
         $input = $request->all();
 
+        // if ($request->hasFile('sertifikat')){
+        //     $input['sertifikat'] = '/upload/sertifikat/'.str_slug($input['nama_alat'], '-').'.'.$request->sertifikat->getClientOriginalExtension();
+        //     $request->sertifikat->move(public_path('/upload/sertifikat/'), $input['sertifikat']);
+        // }
+
         if($request->file('foto')){
-            $input['foto']=$request->file('foto')->store('pics');
+            $p =  Str::slug($request['idkaryawan'], '-').'.'.$request->foto->getClientOriginalExtension();
+            $input['foto']=$request->file('foto')->storeAs('pics', $p);
         }
 
         Pic::create($input);
