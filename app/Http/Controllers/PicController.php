@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\File;
+
 use App\Pic;
 use App\Departemen;
 use Illuminate\Http\Request;
@@ -136,15 +138,19 @@ class PicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Pic $pic)
     {
         // $pic = Pic::findOrFail($id);
 
-        // if (!$pic->foto == NULL){
-        //     unlink(public_path($pic->foto));
-        // }
+        $image_path = "storage/".$pic->foto;
+        // dd($image_path);
 
-        Pic::destroy($id);
+        if (file_exists($image_path)){
+            // Storage::delete('public/pics/'.$pic->foto);
+            File::delete($image_path);
+        }
+        
+        Pic::destroy($pic->id);
 
         return response()->json([
             'success'    => true,
