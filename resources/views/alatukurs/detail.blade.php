@@ -23,7 +23,11 @@
                     <div class="text-center">
                         <img src="{{ asset('storage/'.$akur->gambar) }}" alt="gambar" class="img-square" width="200" height="200">
                     </div>
-                    <h2 class="gambar-nama text-center">{{ $akur->nama_alat }}</h2>
+                    @if ($new <= $akur->created_at)
+                        <h2 class="gambar-nama text-center">{{ $akur->nama_alat }} (<span style="color:rgb(44, 183, 93)">New</span>)</h2>
+                    @else
+                        <h2 class="gambar-nama text-center">{{ $akur->nama_alat }}</h2>
+                    @endif
 
                     <div class="row">
 
@@ -106,7 +110,7 @@
                 <div class="box-body">
                     <div class="text-center">
                         @foreach ($kb as $id)
-                        <img src="{{ asset('storage/'.$id->sertifikat) }}" alt="sertifikat" class="img-square" width="300" height="300">
+                        <img src="{{ asset('storage/'.$id->sertifikat) }}" alt="sertifikat" class="img-square" width="400" height="400">
                         @endforeach
                     </div>
                 </div>
@@ -120,7 +124,7 @@
                 </div>
                 <div class="box-body">
                     {{-- <table id="p" class="dataTables_wrapper form-inline dt-bootstrap" style="width:100%"> --}}
-                    <table id="p" class="table table-striped table-bordered" style="width:100%">
+                    <table id="p" class="table table-striped table-bordered table-responsive" style="width:100%">
                         <thead>
                         <tr>
                             <th>No.</th>
@@ -179,16 +183,8 @@
     <script src="{{ asset('assets/validator/validator.min.js') }}"></script>
 
     <script>
-        $(document).ready(function () {
-                $('#p').DataTable(
-                    {{--'paging'      : true,--}}
-                    {{--'lengthChange': false,--}}
-                    {{--'searching'   : false,--}}
-                    {{--'ordering'    : true,--}}
-                    {{--'info'        : true,--}}
-                    {{--'autoWidth'   : false--}}
-                );
-            });
+        $(document).ready( function () {
+            $('#p').DataTable();
+        });
     </script>
-
 @endsection

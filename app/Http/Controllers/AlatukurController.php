@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Departemen;
 use App\Maker;
 use App\Alatukur;
@@ -129,10 +130,14 @@ class AlatukurController extends Controller
         $riwayat = Kalibrasi::where('alatukur_id', '=', $alatukur->id)->count();
         $kalibrasis = Kalibrasi::where('alatukur_id', '=', $alatukur->id)->get();
 
+        // $new = $alatukur->created_at;
+        $shownew = Carbon::now()->subDays(5);
+
         return view('alatukurs.detail',  [
             'akur' => $alatukur,
             'kb' =>  $kalibrasi,
             'count' => $riwayat,
+            'new' => $shownew,
             'kalibrasis' => $kalibrasis,
         ]);
         
@@ -235,6 +240,8 @@ class AlatukurController extends Controller
         $alatukurz = Alatukur::orderBy('id', 'desc')
             ->where('kondisi', '=', 'OK')->get();
 
+        
+
         return Datatables::of($alatukurz)
         ->addIndexColumn()
             ->addColumn('nama_maker', function ($alatukurz){
@@ -259,12 +266,22 @@ class AlatukurController extends Controller
             //     }
             //     return '<img class="rounded-square" width="50" height="50" src="'. url($alatukurz->sertifikat) .'" alt="">';
             // })
+            ->addColumn('new', function($alatukurz){
+                $shownew = Carbon::now()->subDays(5);
+                if ($shownew <= $alatukurz->created_at){
+                    return '<span class="label label-success">NEW</span>';
+                }
+                return '<span class="label label-primary">OLD</span>';
+                })
+
             ->addColumn('action', function($alatukurz){
                 return '<a href="alatukurs/'. $alatukurz->id .'" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-eye-open"></i> Show</a> ' .
                     '<a onclick="editForm('. $alatukurz->id .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
                     '<a onclick="deleteData('. $alatukurz->id .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
             })
-            ->rawColumns(['nama_maker', 'nama_departemen', 'lokasi_alatukur', 'show_photo', 'action'])->make(true);
+
+            ->rawColumns(['nama_maker', 'nama_departemen', 'lokasi_alatukur', 'show_photo','new', 'action'])
+            ->make(true);
 
     }
 

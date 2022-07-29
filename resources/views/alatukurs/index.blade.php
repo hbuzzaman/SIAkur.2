@@ -28,7 +28,7 @@
             <table id="alatukurs-table" class="table table-striped">
                 <thead>
                 <tr>
-                    <th>No.</th>
+                    <th >No.</th>
                     <th>Nama Alat</th>
                     <th>Nomor Seri</th>
                     <th>Nomor Registrasi</th>
@@ -41,6 +41,7 @@
                     <th>Lokasi Alat Ukur</th>
                     <th>Frekuensi</th> -->
                     <th>Gambar</th>
+                    <th>Status Alat</th>
                     <!-- <th>Sertifikat</th> -->
                     <th></th>
                 </tr>
@@ -130,6 +131,7 @@
                 {data: 'tgl_plan', name: 'tgl_plan'},
                 {data: 'tgl_actual', name: 'tgl_actual'},
                 {data: 'show_photo', name: 'show_photo'},
+                {data: 'new', name: 'new'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
         });
