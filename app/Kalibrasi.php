@@ -14,5 +14,5 @@ class Kalibrasi extends Model
     {
         return $this->belongsTo(Alatukur::class);
     }
-
+ 
 }
