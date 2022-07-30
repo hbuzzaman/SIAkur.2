@@ -90,17 +90,12 @@ class AlatukurController extends Controller
 
         $input = $request->all();
         $gambar = null;
-        // $input['sertifikat'] = null;
 
         if($request->hasFile('gambar')){
             if($request->file('gambar')){
                 $input['gambar']=$request->file('gambar')->store('alatukur');
             }
         }
-        // if ($request->hasFile('sertifikat')){
-        //     $input['sertifikat'] = '/upload/sertifikat/'.str_slug($input['nama_alat'], '-').'.'.$request->sertifikat->getClientOriginalExtension();
-        //     $request->sertifikat->move(public_path('/upload/sertifikat/'), $input['sertifikat']);
-        // }
 
         Alatukur::create($input);
 

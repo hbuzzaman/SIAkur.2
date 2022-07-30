@@ -59,11 +59,6 @@ class PicController extends Controller
 
         $input = $request->all();
 
-        // if ($request->hasFile('sertifikat')){
-        //     $input['sertifikat'] = '/upload/sertifikat/'.str_slug($input['nama_alat'], '-').'.'.$request->sertifikat->getClientOriginalExtension();
-        //     $request->sertifikat->move(public_path('/upload/sertifikat/'), $input['sertifikat']);
-        // }
-
         if($request->file('foto')){
             $p =  Str::slug($request['idkaryawan'], '-').'.'.$request->foto->getClientOriginalExtension();
             $input['foto']=$request->file('foto')->storeAs('pics', $p);
@@ -108,30 +103,31 @@ class PicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Pic $pic)
     {
 
         $this->validate($request, [
             'idkaryawan'    => 'required|string',
             'nama_pic'      => 'required',
             'departemen_id' => 'required',
-            //'foto'        => 'required',
+            'foto'        => '',
         ]);
         
         $input = $request->all();
-        $picc = Pic::findOrFail($id);
-
-        $input['foto'] = $picc->foto;
 
         if ($request->hasFile('foto')){
-            if (!$picc->foto == NULL){
-                unlink(public_path($picc->foto));
+            // jika ada fotonya, hapus
+            if (!$pic->foto == NULL){
+                            $image_path = "storage/".$pic->foto;
+                            File::delete($image_path);
             }
-            $input['foto'] = '/upload/pics/'.str_slug($input['nama_pic'], '-').'.'.$request->foto->getClientOriginalExtension();
-            $request->foto->move(public_path('/upload/pics/'), $input['foto']);
+            // lalu insert foto baru dan jika foto tidak ada
+                $p =  Str::slug($request['idkaryawan'], '-').'.'.$request->foto->getClientOriginalExtension();
+                $input['foto']=$request->file('foto')->storeAs('pics', $p);
+            
         }
 
-        $picc->update($input);
+        $pic->update($input);
 
         return response()->json([
             'success'    => true,
@@ -147,16 +143,13 @@ class PicController extends Controller
      */
     public function destroy(Pic $pic)
     {
-        // $pic = Pic::findOrFail($id);
-
         $image_path = "storage/".$pic->foto;
         // dd($image_path);
 
         if (file_exists($image_path)){
-            // Storage::delete('public/pics/'.$pic->foto);
             File::delete($image_path);
         }
-        
+
         Pic::destroy($pic->id);
 
         return response()->json([
