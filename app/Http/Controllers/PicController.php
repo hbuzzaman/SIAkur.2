@@ -51,7 +51,7 @@ class PicController extends Controller
     {
 
         $this->validate($request, [
-            'idkaryawan'    => 'required|string',
+            'idkaryawan'    => 'required|string|unique:pics',
             'nama_pic'      => 'required',
             'departemen_id' => 'required',
             'foto'          => 'mimes:jpg,jpeg,png|max:2000',
@@ -118,8 +118,8 @@ class PicController extends Controller
         if ($request->hasFile('foto')){
             // jika ada fotonya, hapus
             if (!$pic->foto == NULL){
-                            $image_path = "storage/".$pic->foto;
-                            File::delete($image_path);
+                     $image_path = "storage/".$pic->foto;
+                    File::delete($image_path);
             }
             // lalu insert foto baru dan jika foto tidak ada
                 $p =  Str::slug($request['idkaryawan'], '-').'.'.$request->foto->getClientOriginalExtension();

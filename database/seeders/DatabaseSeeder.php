@@ -21,9 +21,18 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         User::create([
-            'name' => 'test',
-            'email' => 'test@gmail.com',
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'role' => 'admin',
+            
+        ]);
+
+        User::create([
+            'name' => 'staff',
+            'email' => 'staff@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'role' => 'staff',
             
         ]);
         
@@ -47,7 +56,6 @@ class DatabaseSeeder extends Seeder
         Pic::create([
             'idkaryawan' => '1a2b',
             'nama_pic' => 'ajiz',
-            'departemen_id' => '1',
             'departemen_id' => '1',
         ]);
     }
