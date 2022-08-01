@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
@@ -173,8 +174,13 @@ class PicController extends Controller
             return '<img class="rounded-square" width="50" height="50" src="'. $foto .'" alt="">';
             })
             ->addColumn('action', function($pic){
-                return 
-
+                
+                if (Auth::user()->role == 'manager'){
+                    return
+                    '<a onclick="banned()" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
+                    '<a onclick="banned()" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+                }
+                return
                 '<a onclick="editForm('. $pic->id .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
                 '<a onclick="deleteData('. $pic->id .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
                 
