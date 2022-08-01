@@ -124,7 +124,6 @@ class PicController extends Controller
             // lalu insert foto baru dan jika foto tidak ada
                 $p =  Str::slug($request['idkaryawan'], '-').'.'.$request->foto->getClientOriginalExtension();
                 $input['foto']=$request->file('foto')->storeAs('pics', $p);
-            
         }
 
         $pic->update($input);
