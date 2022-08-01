@@ -10,7 +10,7 @@ class LokasiAlatukurController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('role:admin,staff');
+        $this->middleware('role:admin,staff,manager');
     }
     /**
      * Display a listing of the resource.

@@ -33,7 +33,13 @@ class DatabaseSeeder extends Seeder
             'email' => 'staff@gmail.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'role' => 'staff',
-            
+        ]);
+
+        User::create([
+            'name' => 'manager',
+            'email' => 'manager@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'role' => 'manager',
         ]);
         
         Maker::create([

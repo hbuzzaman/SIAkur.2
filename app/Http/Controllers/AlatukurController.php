@@ -16,7 +16,7 @@ class AlatukurController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('role:admin,staff');
+        $this->middleware('role:admin,staff,manager');
     }
     /**
      * Display a listing of the resource.
@@ -114,9 +114,6 @@ class AlatukurController extends Controller
     public function show(Alatukur $alatukur)
     {
 
-        // $kalibrasi = Kalibrasi::where()
-        // $unit = Kalibrasi::latest();
-
         $kalibrasi = Kalibrasi::latest()
         ->where('alatukur_id', '=', $alatukur->id)
                 ->limit(1)
@@ -124,7 +121,6 @@ class AlatukurController extends Controller
         $riwayat = Kalibrasi::where('alatukur_id', '=', $alatukur->id)->count();
         $kalibrasis = Kalibrasi::where('alatukur_id', '=', $alatukur->id)->get();
 
-        // $new = $alatukur->created_at;
         $shownew = Carbon::now()->subDays(5);
 
         return view('alatukurs.detail',  [
@@ -171,15 +167,12 @@ class AlatukurController extends Controller
             'departemen_id'      => 'required',
             'lokasi_alatukur_id' => 'required',
             'frekuensi'          => 'required',
-            //'gambar'           => 'required',
-            //'sertifikat'       => 'required',
         ]);
 
         $input = $request->all();
         $alatukurr = Alatukur::findOrFail($id);
 
         $input['gambar'] = $alatukurr->gambar;
-        // $input['sertifikat'] = $alatukurr->sertifikat;
 
         if ($request->hasFile('gambar')){
             if (!$alatukurr->gambar == NULL){
@@ -188,13 +181,6 @@ class AlatukurController extends Controller
             $input['gambar'] = '/upload/alatukurs/'.str_slug($input['nama_alat'], '-').'.'.$request->gambar->getClientOriginalExtension();
             $request->gambar->move(public_path('/upload/alatukurs/'), $input['gambar']);
         }
-        // if ($request->hasFile('sertifikat')){
-        //     if (!$alatukurr->sertifikat == NULL){
-        //         unlink(public_path($alatukurr->sertifikat));
-        //     }
-        //     $input['sertifikat'] = '/upload/sertifikat/'.str_slug($input['nama_alat'], '-').'.'.$request->sertifikat->getClientOriginalExtension();
-        //     $request->sertifikat->move(public_path('/upload/sertifikat/'), $input['sertifikat']);
-        // }
 
         $alatukurr->update($input);
 
@@ -217,10 +203,6 @@ class AlatukurController extends Controller
         if (!$alatukur->gambar == NULL){
             unlink(public_path($alatukur->gambar));
         }
-        // elseif (!$alatukur->sertifikat == NULL){
-        //     unlink(public_path($alatukur->sertifikat));
-        // }
-
         Alatukur::destroy($id);
 
         return response()->json([
@@ -233,8 +215,6 @@ class AlatukurController extends Controller
         // $alatukurz = Alatukur::all();
         $alatukurz = Alatukur::orderBy('id', 'desc')
             ->where('kondisi', '=', 'OK')->get();
-
-        
 
         return Datatables::of($alatukurz)
         ->addIndexColumn()
@@ -254,12 +234,6 @@ class AlatukurController extends Controller
                 $url = asset('storage/'.$alatukurz->gambar);
                 return '<img class="rounded-square" width="50" height="50" src="'. $url .'" alt="">';
                 })
-            // ->addColumn('show_sertifikat', function($alatukurz){
-            //     if ($alatukurz->sertifikat == NULL){
-            //         return 'No Image';
-            //     }
-            //     return '<img class="rounded-square" width="50" height="50" src="'. url($alatukurz->sertifikat) .'" alt="">';
-            // })
             ->addColumn('new', function($alatukurz){
                 $shownew = Carbon::now()->subDays(5);
                 if ($shownew <= $alatukurz->created_at){
