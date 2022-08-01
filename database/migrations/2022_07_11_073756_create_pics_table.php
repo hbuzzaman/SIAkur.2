@@ -15,7 +15,7 @@ class CreatePicsTable extends Migration
     {
         Schema::create('pics', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('idkaryawan');
+            $table->string('idkaryawan')->unique();
             $table->string('nama_pic');
             $table->integer('departemen_id')->unsigned();
             $table->string('foto')->nullable();

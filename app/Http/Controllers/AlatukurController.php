@@ -89,7 +89,6 @@ class AlatukurController extends Controller
         ]);
 
         $input = $request->all();
-        $gambar = null;
 
         if($request->hasFile('gambar')){
             if($request->file('gambar')){

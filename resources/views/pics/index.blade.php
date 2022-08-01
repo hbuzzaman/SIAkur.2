@@ -109,6 +109,15 @@
                 }
             });
         }
+        
+        function banned() {
+            swal({
+                title: 'Oops...',
+                text: 'ora duwe akses',
+                type: 'error',
+                timer: '1500'
+            })
+        }
 
         function deleteData(id){
             var csrf_token = $('meta[name="csrf-token"]').attr('content');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
@@ -51,7 +52,7 @@ class PicController extends Controller
     {
 
         $this->validate($request, [
-            'idkaryawan'    => 'required|string',
+            'idkaryawan'    => 'required|string|unique:pics',
             'nama_pic'      => 'required',
             'departemen_id' => 'required',
             'foto'          => 'mimes:jpg,jpeg,png|max:2000',
@@ -118,13 +119,12 @@ class PicController extends Controller
         if ($request->hasFile('foto')){
             // jika ada fotonya, hapus
             if (!$pic->foto == NULL){
-                            $image_path = "storage/".$pic->foto;
-                            File::delete($image_path);
+                     $image_path = "storage/".$pic->foto;
+                    File::delete($image_path);
             }
             // lalu insert foto baru dan jika foto tidak ada
                 $p =  Str::slug($request['idkaryawan'], '-').'.'.$request->foto->getClientOriginalExtension();
                 $input['foto']=$request->file('foto')->storeAs('pics', $p);
-            
         }
 
         $pic->update($input);
@@ -174,10 +174,16 @@ class PicController extends Controller
             return '<img class="rounded-square" width="50" height="50" src="'. $foto .'" alt="">';
             })
             ->addColumn('action', function($pic){
-                return 
-                    // '<a href="#" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-eye-open"></i> Show</a>'
-                    '<a onclick="editForm('. $pic->id .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
-                    '<a onclick="deleteData('. $pic->id .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+                
+                if (Auth::user()->role == 'manager'){
+                    return
+                    '<a onclick="banned()" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
+                    '<a onclick="banned()" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+                }
+                return
+                '<a onclick="editForm('. $pic->id .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
+                '<a onclick="deleteData('. $pic->id .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+                
             })
             ->rawColumns(['nama_departemen','show_photo','action'])->make(true);
     }

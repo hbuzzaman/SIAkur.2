@@ -24,6 +24,14 @@
                     <span>Dashboard</span></a>
             </li>
 
+            @can('roleadmin')
+            <li class="{{ Request::is('home') ? 'active' : '' }}">
+                <a href="#">
+                    <i class="fa fa-tachometer"></i>
+                    <span>User</span></a>
+            </li>
+            @endcan
+
             <li class="treeview {{ Request::is('alatukurs*') ? 'active' : '' }}" style="height: auto;">
                 <a href="#">
                     <i class="fa fa-wrench"></i>

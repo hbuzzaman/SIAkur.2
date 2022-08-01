@@ -16,8 +16,8 @@ class CreateAlatukursTable extends Migration
         Schema::create('alatukurs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama_alat');
-            $table->string('no_seri');
-            $table->string('no_reg');
+            $table->string('no_seri')->unique();
+            $table->string('no_reg')->unique();
             $table->string('range');
             $table->string('resolusi');
             $table->integer('maker_id')->unsigned();
