@@ -11,6 +11,8 @@
 |
 */
 
+use \App\Http\Controllers\UserController;
+
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -50,5 +52,8 @@ Route::get('dashboard', function () {
 
     Route::resource('kalibrasis','KalibrasiController')->middleware('auth');
     Route::get('/apiKalibrasis','KalibrasiController@apiKalibrasis')->name('api.kalibrasis');
+
+    Route::resource('user', 'UserController')->middleware('auth');
+    Route::get('/apiUsers', 'UserController@apiUsers')->name('api.users');
 
 
