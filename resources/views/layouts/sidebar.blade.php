@@ -26,7 +26,7 @@
 
             @can('roleadmin')
             <li class="{{ Request::is('user') ? 'active' : '' }}">
-                <a href="user">
+                <a href="/user">
                     <i class="fa fa-tachometer"></i>
                     <span>User</span></a>
             </li>
