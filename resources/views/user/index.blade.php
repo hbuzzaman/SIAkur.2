@@ -89,7 +89,7 @@
             $('input[name=_method]').val('PATCH');
             $('#modal-form form')[0].reset();
             $.ajax({
-                url: "{{ url('pics') }}" + '/' + id + "/edit",
+                url: "{{ url('user') }}" + '/' + id + "/edit",
                 type: "GET",
                 dataType: "JSON",
                 success: function(data) {
@@ -97,9 +97,10 @@
                     $('.modal-title').text('Edit User');
 
                     $('#id').val(data.id);
-                    $('#idkaryawan').val(data.idkaryawan);
-                    $('#nama_pic').val(data.nama_pic);
-                    $('#departemen_id').val(data.departemen_id);
+                    $('#name').val(data.name);
+                    $('#email').val(data.email);
+                    $('#password').val(data.password);
+                    $('#password_confirmation').val(data.password);
                 },
                 error : function() {
                     alert("Nothing Data");
@@ -131,6 +132,7 @@
                             timer: '1500'
                         })
                     },
+                    
                     error : function () {
                         swal({
                             title: 'Oops...',
@@ -168,13 +170,11 @@
                                 timer: '1500'
                             })
                         },
-                        error : function(data){
-                            swal({
-                                title: 'Oops...',
-                                text: data.message,
-                                type: 'error',
-                                timer: '1500'
-                            })
+                        error:function (response) {
+                            $('#nameError').text(response.responseJSON.errors.name);
+                            $('#emailError').text(response.responseJSON.errors.email);
+                            $('#roleError').text(response.responseJSON.errors.role);
+                            $('#passwordError').text(response.responseJSON.errors.password);
                         }
                     });
                     return false;

@@ -17,26 +17,37 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label>Nama</label>
-                            <input type="text" class="form-control" id="name" name="name"  autofocus required>
-                            <span class="help-block with-errors"></span>
+                            <input type="text" class="form-control" id="name" name="name"  autofocus>
+                            <span class="text-danger with-errors" id="nameError"></span>
                         </div>
 
                         <div class="form-group">
                             <label >Email</label>
-                            <input type="text" class="form-control" id="email" name="email"   required>
-                            <span class="help-block with-errors"></span>
+                            <input type="text" class="form-control" id="email" name="email">
+                            <span class="text-danger with-errors" id="emailError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label >Role</label>
+                                <select name="role" id="role" class="form-control">
+                                    <option value="">--Choose Role--</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="Manager">Manager</option>
+                                    <option value="Staff">Staff</option>
+                                </select >
+                                <span class="text-danger with-errors" id="roleError"></span>
                         </div>
 
                         <div class="form-group">
                             <label >Password</label>
-                            <input type="password" class="form-control" id="password" name="password"   required>
-                            <span class="help-block with-errors"></span>
+                            <input type="password" class="form-control" id="password" name="password">
+                            <span class="text-danger with-errors" id="passwordError"></span>
                         </div>
 
                         <div class="form-group">
                             <label >Confirm Password</label>
                             <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
-                            <span class="help-block with-errors"></span>
+                            <span class="text-danger with-errors"></span>
                         </div>
 
 

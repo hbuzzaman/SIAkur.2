@@ -48,7 +48,7 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name'    => 'required|string|unique:users',
             'email'      => 'required|unique:users',
-            // 'role'      => 'required',
+            'role'      => 'required',
             'password' => 'required|confirmed|min:6',
         ]);
 
@@ -60,19 +60,6 @@ class UserController extends Controller
                     'success'    => true,
                     'message'    => 'User Created'
                 ]);
-
-        // if(!$p->fails()){
-        //     return response()->json([
-        //         'success'    => true,
-        //         'message'    => 'User Created'
-        //     ]);
-        // }
-
-        // return response()->json([
-        //     'error'    => true,
-        //     'message'    => $p->errors()
-        // ]);
-
     }
 
     /**
@@ -92,9 +79,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
         //
+        return $user;
     }
 
     /**
@@ -134,7 +122,6 @@ class UserController extends Controller
                 return
                 '<a onclick="editForm('. $users->id .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
                 '<a onclick="deleteData('. $users->id .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
-                
             })
             ->rawColumns(['action'])->make(true);
     }
