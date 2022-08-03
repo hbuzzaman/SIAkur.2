@@ -18,8 +18,8 @@ class CreateKalibrasisTable extends Migration
             $table->integer('alatukur_id')->unsigned();
             $table->date('tgl_kalibrasi');
             $table->date('tgl_nextkalibrasi');
-            $table->date('tgl_sertifikat');
-            $table->string('sertifikat')->default(null);
+            $table->date('tgl_sertifikat')->nullable();
+            $table->string('sertifikat')->nullable();
             $table->string('status');
             $table->timestamps();
 

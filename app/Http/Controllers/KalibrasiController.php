@@ -49,6 +49,7 @@ class KalibrasiController extends Controller
             'tgl_kalibrasi'     => 'required',
             'tgl_nextkalibrasi' => '',
             'tgl_sertifikat'    => '',
+            'sertifikat'    => '',
             'status'            => '',
         ]);
 

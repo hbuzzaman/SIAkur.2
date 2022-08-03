@@ -212,7 +212,6 @@ class AlatukurController extends Controller
     }
 
     public function apiAlatukurs(){
-        // $alatukurz = Alatukur::all();
         $alatukurz = Alatukur::orderBy('id', 'desc')
             ->where('kondisi', '=', 'OK')->get();
 
