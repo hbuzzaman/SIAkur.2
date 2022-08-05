@@ -10,7 +10,7 @@
         <div class="box">
             <div class="box-body">
             <div class="callout callout-success">
-            <h4 class="btn btn-primary pull-right" style="margin-top: -8px;">Master Schedule</h4>
+            <!-- <h4 class="btn btn-primary pull-right" style="margin-top: -8px;">Master Schedule</h4> -->
                 <h4>Success</h4>
 
                 <p>{{ session('status') }} You are logged in!</p>

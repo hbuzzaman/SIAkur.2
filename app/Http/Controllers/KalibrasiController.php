@@ -56,11 +56,12 @@ class KalibrasiController extends Controller
             'sertifikat'        => 'mimes:jpg,jpeg,png|max:2000',
             'status'            => '',
         ]);
-
+        $alat = Alatukur::find($request['alatukur_id']);
+        // dd($alat);
         $input = $request->all();
 
         if($request->file('sertifikat')){
-            $s = Str::slug($request['tgl_kalibrasi'], '-').'.'.$request->sertifikat->getClientOriginalExtension();
+            $s = Str::slug($request['tgl_kalibrasi'], '-').'-'.$alat['no_reg'].'.'.$request->sertifikat->getClientOriginalExtension();
             $input['sertifikat']=$request->file('sertifikat')->storeAs('kalibrasis', $s);
         }
         // if($request->file('sertifikat')){
