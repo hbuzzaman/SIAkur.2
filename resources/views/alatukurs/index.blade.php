@@ -228,13 +228,21 @@
                                 timer: '1500'
                             })
                         },
-                        error : function(data){
-                            swal({
-                                title: 'Oops...',
-                                text: data.message,
-                                type: 'error',
-                                timer: '1500'
-                            })
+                        error:function (response) {
+                            $('#namaError').text(response.responseJSON.errors.nama_alat);
+                            $('#no_seriError').text(response.responseJSON.errors.no_seri);
+                            $('#no_regError').text(response.responseJSON.errors.no_reg);
+                            $('#rangeError').text(response.responseJSON.errors.range);
+                            $('#resolusiError').text(response.responseJSON.errors.resolusi);
+                            $('#makerError').text(response.responseJSON.errors.maker_id);
+                            $('#tglplanError').text(response.responseJSON.errors.tgl_plan);
+                            $('#tglactError').text(response.responseJSON.errors.tgl_actual);
+                            $('#departemenError').text(response.responseJSON.errors.departemen_id);
+                            $('#lokasiError').text(response.responseJSON.errors.lokasi_alatukur_id);
+                            $('#frekuensiError').text(response.responseJSON.errors.frekuensi);
+                            $('#kondisiError').text(response.responseJSON.errors.kondisi);
+                            $('#statusError').text(response.responseJSON.errors.status);
+                            $('#picError').text(response.responseJSON.errors.pic_id);
                         }
                     });
                     return false;

@@ -10,7 +10,7 @@
         <div class="box">
             <div class="box-body">
             <div class="callout callout-success">
-            <!-- <h4 class="btn btn-primary pull-right" style="margin-top: -8px;">Master Schedule</h4> -->
+            <a href="/masterjadwal" class="btn btn-primary pull-right" style="margin-top: -8px;">Master Schedule</a>
                 <h4>Success</h4>
 
                 <p>{{ session('status') }} You are logged in!</p>
@@ -31,7 +31,7 @@
             <div class="icon">
                 <i class="ion ion-person"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{ route('user.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <!-- ./col -->
@@ -124,7 +124,7 @@
             <div class="icon">
                 <i class="ion ion-location"></i>
             </div>
-            <a href="{{ route('tempat_kalibrasis.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="/alatukursr" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
 </div>

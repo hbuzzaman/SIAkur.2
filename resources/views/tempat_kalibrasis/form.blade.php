@@ -18,8 +18,8 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label >Tempat Kalibrasi</label>
-                            <input type="text" class="form-control" id="tempat_kalibrasi" name="tempat_kalibrasi"  autofocus required>
-                            <span class="help-block with-errors"></span>
+                            <input type="text" class="form-control" id="tempat_kalibrasi" name="tempat_kalibrasi"  autofocus>
+                            <span class="text-danger with-errors" id="tempatError"></span>
                         </div>
 
                         <div class="form-group">

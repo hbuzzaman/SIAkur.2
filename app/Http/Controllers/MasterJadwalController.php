@@ -86,7 +86,7 @@ class MasterJadwalController extends Controller
         $masterjadwal = MasterJadwal::latest()
                 ->limit(1)
                 ->get();
-
+        // dd($masterjadwal);
         return view('master_jadwals.detail',  [
             'mj' => $masterjadwal]);
     }
