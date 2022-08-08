@@ -37,7 +37,9 @@ Route::get('dashboard', function () {
     Route::resource('alatukurs','AlatukurController')->middleware('auth');
     Route::get('/apiAlatukurs','AlatukurController@apiAlatukurs')->name('api.alatukurs');
 
-    Route::get('alatukursr','AlatukurController@rusak')->middleware('auth')->name('alatukurrusak');
+    Route::get('alatukursr','AlatukurController@rusak')->name('alatukurrusak');
+
+    Route::get('masterjadwal','MasterJadwalController@masterjadwal')->name('masterjadwalz');
 
     Route::resource('pinjams','PinjamController')->middleware('auth');
     Route::get('/apiPinjams','PinjamController@apiPinjams')->name('api.pinjams');
@@ -49,7 +51,13 @@ Route::get('dashboard', function () {
 
     Route::resource('lokasi_alatukurs','LokasiAlatukurController')->middleware('auth');
     Route::get('/apiLokasiAlatukurs','LokasiAlatukurController@apiLokasiAlatukurs')->name('api.lokasi_alatukurs');
+    
+    Route::resource('cek_fisiks','CekFisikController')->middleware('auth');
+    Route::get('/apiCekFisiks','CekFisikController@apiCekFisiks')->name('api.cek_fisiks');
 
+    Route::resource('master_jadwals','MasterJadwalController')->middleware('auth');
+    Route::get('/apiMasterJadwals','MasterJadwalController@apiMasterJadwals')->name('api.master_jadwals');
+    
     Route::resource('kalibrasis','KalibrasiController')->middleware('auth');
     Route::get('/apiKalibrasis','KalibrasiController@apiKalibrasis')->name('api.kalibrasis');
 

@@ -32,7 +32,7 @@
             <table id="pinjams-table" class="table table-striped">
                 <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>No.</th>
                     <th>Nama Peminjam</th>
                     <th>Nama Alat</th>
                     <th>Nomor Seri</th>
@@ -130,7 +130,7 @@
             serverSide: true,
             ajax: "{{ route('api.pinjams') }}",
             columns: [
-                {data: 'id', name: 'id'},
+                {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
                 {data: 'nama_peminjam', name: 'nama_peminjam'},
                 {data: 'nama_alat', name: 'nama_alat'},
                 {data: 'no_seri', name: 'no_seri'},

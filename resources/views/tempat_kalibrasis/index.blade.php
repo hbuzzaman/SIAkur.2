@@ -25,7 +25,7 @@
             <table id="tempat_kalibrasis-table" class="table table-striped">
                 <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>No.</th>
                     <th>Tempat Kalibrasi</th>
                     <th>Alamat</th>
                     <th>Action</th>

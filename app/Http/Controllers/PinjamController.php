@@ -158,6 +158,7 @@ class PinjamController extends Controller
         $pinjam = Pinjam::all();
 
         return Datatables::of($pinjam)
+            ->addIndexColumn()
             ->addColumn('nama_alat', function ($pinjam){
                 return $pinjam->alatukur->nama_alat;
             })

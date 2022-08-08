@@ -25,7 +25,7 @@
             <table id="lokasi_alatukurs-table" class="table table-striped">
                 <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>No.</th>
                     <th>Lokasi Alat Ukur</th>
                     <th>Action</th>
                 </tr>

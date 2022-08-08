@@ -25,7 +25,7 @@
             <table id="maker-table" class="table table-striped">
                 <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>No.</th>
                     <th>Nama Maker</th>
                     <th>Action</th>
                 </tr>

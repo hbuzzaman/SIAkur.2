@@ -10,6 +10,7 @@
         <div class="box">
             <div class="box-body">
             <div class="callout callout-success">
+            <!-- <h4 class="btn btn-primary pull-right" style="margin-top: -8px;">Master Schedule</h4> -->
                 <h4>Success</h4>
 
                 <p>{{ session('status') }} You are logged in!</p>
@@ -127,6 +128,16 @@
         </div>
     </div>
 </div>
+
+<div class="row">
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <h4>Pimpinan: <strong>Aminudin</strong></h4>
+        <h4>PIC Kalibrasi: <strong>Aziz</strong></h4>
+    </div>
+</div>
+
 <!-- <div class="row">
     <div class="col-lg-3 col-xs-6">
         <div class="small-box bg-navy">

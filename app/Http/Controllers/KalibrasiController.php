@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
+
 use App\Kalibrasi;
 use App\Alatukur;
 use Illuminate\Http\Request;
@@ -49,15 +53,20 @@ class KalibrasiController extends Controller
             'tgl_kalibrasi'     => 'required',
             'tgl_nextkalibrasi' => '',
             'tgl_sertifikat'    => '',
-            'sertifikat'    => '',
+            'sertifikat'        => 'mimes:jpg,jpeg,png|max:2000',
             'status'            => '',
         ]);
-
+        $alat = Alatukur::find($request['alatukur_id']);
+        // dd($alat);
         $input = $request->all();
 
         if($request->file('sertifikat')){
-            $input['sertifikat']=$request->file('sertifikat')->store('kalibrasi');
+            $s = Str::slug($request['tgl_kalibrasi'], '-').'-'.$alat['no_reg'].'.'.$request->sertifikat->getClientOriginalExtension();
+            $input['sertifikat']=$request->file('sertifikat')->storeAs('kalibrasis', $s);
         }
+        // if($request->file('sertifikat')){
+        //     $input['sertifikat']=$request->file('sertifikat')->store('kalibrasi');
+        // }
 
         Kalibrasi::create($input);
 
@@ -88,8 +97,6 @@ class KalibrasiController extends Controller
      */
     public function edit($id)
     {
-        $alatukur = Alatukur::all();
-
         $kalibrasi = Kalibrasi::find($id);
         return $kalibrasi;
     }
@@ -101,10 +108,8 @@ class KalibrasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Kalibrasi $kalibrasi)
     {
-        $alatukur = Alatukur::all();
-
             $this->validate($request, [
                 'alatukur_id'       => 'required',
                 'tgl_kalibrasi'     => 'required',
@@ -114,20 +119,20 @@ class KalibrasiController extends Controller
                 'status'            => '',
             ]);
 
-            $kalibrasii = Kalibrasi::findOrFail($id);
-    
-            $input['sertifikat'] = $kalibrasii->sertifikat;
-    
-            if ($request->hasFile('sertifikat')){
-                if (!$kalibrasii->sertifikat == NULL){
-                    unlink(public_path($kalibrasii->sertifikat));
-                }
-                $fileName = $request->file('sertifikat')->getClientOriginalName();
-                $input['sertifikat'] = '/upload/sertifikats/'.str_slug($fileName,'-').'.'.$request->sertifikat->getClientOriginalExtension();
-                $request->sertifikat->move(public_path('/upload/sertifikats/'), $input['sertifikat']);
+            $input = $request->all();
+
+        if ($request->hasFile('sertifikat')){
+            // jika ada fotonya, hapus
+            if (!$kalibrasi->sertifikat == NULL){
+                     $image_path = "storage/".$kalibrasi->sertifikat;
+                    File::delete($image_path);
             }
-    
-            $kalibrasii->update($input);
+            // lalu insert foto baru dan jika foto tidak ada
+                $s =  Str::slug($request['tgl_kalibrasi'], '-').'.'.$request->sertifikat->getClientOriginalExtension();
+                $input['sertifikat']=$request->file('sertifikat')->storeAs('kalibrasis', $s);
+        }
+
+        $kalibrasi->update($input);
     
             return response()->json([
                 'success'    => true,
@@ -143,7 +148,14 @@ class KalibrasiController extends Controller
      */
     public function destroy(Kalibrasi $kalibrasi)
     {
+        $image_path = "storage/".$kalibrasi->sertifikat;
+
+        if (file_exists($image_path)){
+            File::delete($image_path);
+        }
+
         Kalibrasi::destroy($kalibrasi->id);
+
         return response()->json([
             'success' => true,
             'message' => 'Riwayat Kalibrasi Deleted'
@@ -151,9 +163,7 @@ class KalibrasiController extends Controller
     }
 
     public function apiKalibrasis(){
-        // $kalibrasi = Kalibrasi::all();
         $kalibrasi = Kalibrasi::orderBy('id', 'desc')->get();
-
 
         return Datatables::of($kalibrasi)
         ->addIndexColumn()
@@ -161,17 +171,22 @@ class KalibrasiController extends Controller
             return $kalibrasi->alatukur->nama_alat;
          })
         ->addColumn('show_photo', function($kalibrasi){
-            $url=asset('storage/'.$kalibrasi->sertifikat);
         if ($kalibrasi->sertifikat == NULL){
             return 'No Image';
         }
+        $url = asset('storage/'.$kalibrasi->sertifikat);
         return '<img class="rounded-square" width="50" height="50" src="'. $url .'" alt="">';
         })
         ->addColumn('action', function($kalibrasi){
-            return 
-            // '<a href="#" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-eye-open"></i> Show</a> ' .
-                '<a onclick="editForm('. $kalibrasi->id .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
-                '<a onclick="deleteData('. $kalibrasi->id .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+            if (Auth::user()->role == 'manager'){
+                return
+                '<a onclick="banned()" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
+                '<a onclick="banned()" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+            }
+            return
+            '<a onclick="editForm('. $kalibrasi->id .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
+            '<a onclick="deleteData('. $kalibrasi->id .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+            
         })
         ->rawColumns(['nama_alat','show_photo','action'])->make(true);
 }

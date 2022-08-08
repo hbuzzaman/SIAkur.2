@@ -1,10 +1,8 @@
 @extends('layouts.master')
 
-
 @section('top')
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
-    
     <!-- daterange picker -->
     <link rel="stylesheet" href="{{ asset('assets/bower_components/bootstrap-daterangepicker/daterangepicker.css') }}">
     <!-- bootstrap datepicker -->
@@ -21,7 +19,6 @@
         <div class="box-header">
             <a onclick="addForm()" class="btn btn-primary">Add Alat Ukur</a>
         </div>
-
 
         <!-- /.box-header -->
         <div class="box-body">
@@ -57,11 +54,9 @@
 @endsection
 
 @section('bot')
-
     <!-- DataTables -->
     <script src=" {{ asset('assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }} "></script>
     <script src="{{ asset('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }} "></script>
-    
     <!-- InputMask -->
     <script src="{{ asset('assets/plugins/input-mask/jquery.inputmask.js') }}"></script>
     <script src="{{ asset('assets/plugins/input-mask/jquery.inputmask.date.extensions.js') }}"></script>
@@ -95,7 +90,6 @@
 
     <script>
         $(function () {
-
             //Date picker
             $('#tgl_plan').datepicker({
                 autoclose: true,
@@ -105,12 +99,10 @@
                 autoclose: true,
                 // dateFormat: 'yyyy-mm-dd'
             })
-
             //Colorpicker
             $('.my-colorpicker1').colorpicker()
             //color picker with addon
             $('.my-colorpicker2').colorpicker()
-
             //Timepicker
             $('.timepicker').timepicker({
                 showInputs: false

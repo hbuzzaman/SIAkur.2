@@ -10,34 +10,41 @@
                     <h3 class="modal-title"></h3>
                 </div>
 
+
                 <div class="modal-body">
                     <input type="hidden" id="id" name="id">
 
+
                     <div class="box-body">
                         <div class="form-group">
-                            <label >ID Karyawan</label>
-                            <input type="text" class="form-control" id="idkaryawan" name="idkaryawan"  autofocus required>
+                            <select name="alatukur_id" id="alatukur" class="form-control">
+                                <option value="">-- Choose Alat Ukur --</option>
+                                @foreach ($alatukur as $id)
+                                <option value="{{ $id->id }}">{{ $id->nama_alat }} || {{ $id->no_seri }}</option>
+                                @endforeach
+                            </select>
                             <span class="help-block with-errors"></span>
                         </div>
-
                         <div class="form-group">
-                            <label >Nama PIC</label>
-                            <input type="text" class="form-control" id="nama_pic" name="nama_pic"   required>
-                            <span class="help-block with-errors"></span>
-                        </div>
-
+                            <label><strong>Cek Fisik</strong></label><br>
+                            <label><input type="checkbox" name="check1" value="1"> 1</label>
+                            <label><input type="checkbox" name="check2" value="2"> 2</label>
+                            <label><input type="checkbox" name="check3" value="3"> 3</label>
+                            <label><input type="checkbox" name="check4" value="4"> 4</label>
+                            <label><input type="checkbox" name="check5" value="5"> 5</label>
+                        </div>  
                         <div class="form-group">
-                            <label >Departemen</label>
-                            {!! Form::select('departemen_id', $departemen, null, ['class' => 'form-control select', 'placeholder' => '-- Choose Departemen --', 'id' => 'departemen_id', 'required']) !!}
-                            <span class="help-block with-errors"></span>
+                            <label >Judge</label>
+                            <select name="judge" id="judge" class="form-control">
+                                <option value="OK">OK</option>
+                                <option value="NG">NG</option>
+                            </select >
                         </div>
-
                         <div class="form-group">
-                            <label >Foto</label>
-                            <input type="file" class="form-control" id="foto" name="foto">
-                            <span class="help-block with-errors"></span>
+                            <label >Keterangan</label>
+                            <textarea name="keterangan" id="keterangan" class="form-control">
+                            </textarea>
                         </div>
-
                     </div>
                     <!-- /.box-body -->
 

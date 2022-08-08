@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'role' => 'admin',
-            
+
         ]);
 
         User::create([
@@ -34,14 +34,14 @@ class DatabaseSeeder extends Seeder
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'role' => 'staff',
         ]);
-
+        
         User::create([
             'name' => 'manager',
             'email' => 'manager@gmail.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'role' => 'manager',
         ]);
-        
+
         Maker::create([
             'nama_maker' => 'TOHNICHI',
         ]);
@@ -55,13 +55,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         TempatKalibrasi::create([
-            'tempat_kalibrasi' => 'www',
-            'alamat' => 'bekasi',
+            'tempat_kalibrasi' => 'CAIRNHILL',
+            'alamat' => 'Delta Commercial Park, Jl. Kenari Jaya, Blk. B5-B6, Jayamukti, Kec. Cikarang Pusat, Kabupaten Bekasi, Jawa Barat 17815',
         ]);
 
         Pic::create([
-            'idkaryawan' => '1a2b',
-            'nama_pic' => 'ajiz',
+            'idkaryawan' => '123456',
+            'nama_pic' => 'AZIZ',
             'departemen_id' => '1',
         ]);
     }

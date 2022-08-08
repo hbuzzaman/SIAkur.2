@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
+
 use Carbon\Carbon;
 use App\Departemen;
 use App\Maker;
@@ -90,10 +94,9 @@ class AlatukurController extends Controller
 
         $input = $request->all();
 
-        if($request->hasFile('gambar')){
-            if($request->file('gambar')){
-                $input['gambar']=$request->file('gambar')->store('alatukur');
-            }
+        if($request->file('gambar')){
+            $g = Str::slug($request['nama_alat'], '-').'.'.$request->gambar->getClientOriginalExtension();
+            $input['gambar']=$request->file('gambar')->storeAs('alatukurs', $g);
         }
 
         Alatukur::create($input);
@@ -113,7 +116,6 @@ class AlatukurController extends Controller
      */
     public function show(Alatukur $alatukur)
     {
-
         $kalibrasi = Kalibrasi::latest()
         ->where('alatukur_id', '=', $alatukur->id)
                 ->limit(1)
@@ -121,6 +123,7 @@ class AlatukurController extends Controller
         $riwayat = Kalibrasi::where('alatukur_id', '=', $alatukur->id)->count();
         $kalibrasis = Kalibrasi::where('alatukur_id', '=', $alatukur->id)->get();
 
+        // $new = $alatukur->created_at;
         $shownew = Carbon::now()->subDays(5);
 
         return view('alatukurs.detail',  [
@@ -152,7 +155,7 @@ class AlatukurController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Alatukur $alatukur)
     {
 
         $this->validate($request , [
@@ -167,22 +170,24 @@ class AlatukurController extends Controller
             'departemen_id'      => 'required',
             'lokasi_alatukur_id' => 'required',
             'frekuensi'          => 'required',
+            'gambar'             => '',
+            //'sertifikat'       => 'required',
         ]);
 
         $input = $request->all();
-        $alatukurr = Alatukur::findOrFail($id);
-
-        $input['gambar'] = $alatukurr->gambar;
 
         if ($request->hasFile('gambar')){
-            if (!$alatukurr->gambar == NULL){
-                unlink(public_path($alatukurr->gambar));
+            // jika ada fotonya, hapus
+            if (!$alatukur->gambar == NULL){
+                     $image_path = "storage/".$alatukur->gambar;
+                    File::delete($image_path);
             }
-            $input['gambar'] = '/upload/alatukurs/'.str_slug($input['nama_alat'], '-').'.'.$request->gambar->getClientOriginalExtension();
-            $request->gambar->move(public_path('/upload/alatukurs/'), $input['gambar']);
+            // lalu insert foto baru dan jika foto tidak ada
+                $g =  Str::slug($request['nama_alat'], '-').'.'.$request->gambar->getClientOriginalExtension();
+                $input['gambar']=$request->file('gambar')->storeAs('alatukurs', $g);
         }
 
-        $alatukurr->update($input);
+        $alatukur->update($input);
 
         return response()->json([
             'success' => true,
@@ -196,14 +201,16 @@ class AlatukurController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Alatukur $alatukur)
     {
-        $alatukur = Alatukur::findOrFail($id);
+        $image_path = "storage/".$alatukur->gambar;
+        // dd($image_path);
 
-        if (!$alatukur->gambar == NULL){
-            unlink(public_path($alatukur->gambar));
+        if (file_exists($image_path)){
+            File::delete($image_path);
         }
-        Alatukur::destroy($id);
+
+        Alatukur::destroy($alatukur->id);
 
         return response()->json([
             'success' => true,
@@ -233,6 +240,12 @@ class AlatukurController extends Controller
                 $url = asset('storage/'.$alatukurz->gambar);
                 return '<img class="rounded-square" width="50" height="50" src="'. $url .'" alt="">';
                 })
+            // ->addColumn('show_sertifikat', function($alatukurz){
+            //     if ($alatukurz->sertifikat == NULL){
+            //         return 'No Image';
+            //     }
+            //     return '<img class="rounded-square" width="50" height="50" src="'. url($alatukurz->sertifikat) .'" alt="">';
+            // })
             ->addColumn('new', function($alatukurz){
                 $shownew = Carbon::now()->subDays(5);
                 if ($shownew <= $alatukurz->created_at){
@@ -242,17 +255,18 @@ class AlatukurController extends Controller
                 })
 
             ->addColumn('action', function($alatukurz){
-                return '<a href="alatukurs/'. $alatukurz->id .'" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-eye-open"></i> Show</a> ' .
-                    '<a onclick="editForm('. $alatukurz->id .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
-                    '<a onclick="deleteData('. $alatukurz->id .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+                if (Auth::user()->role == 'manager'){
+                    return
+                    '<a onclick="banned()" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
+                    '<a onclick="banned()" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+                }
+                return
+                '<a href="alatukurs/'. $alatukurz->id .'" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-eye-open"></i> Show</a> ' .
+                '<a onclick="editForm('. $alatukurz->id .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
+                '<a onclick="deleteData('. $alatukurz->id .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+            
             })
-
-            ->rawColumns(['nama_maker', 'nama_departemen', 'lokasi_alatukur', 'show_photo','new', 'action'])
-            ->make(true);
-
+            ->rawColumns(['nama_maker', 'nama_departemen', 'lokasi_alatukur', 'show_photo','new', 'action'])->make(true);
     }
-
-    
-
     
 }

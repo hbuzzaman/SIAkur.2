@@ -39,4 +39,9 @@ class Alatukur extends Model
     {
         return $this->belongsTo(Pic::class);
     }
+
+    public function cek_fisik()
+    {
+        return $this->hasMany(CekFisik::class);
+    }
 }
