@@ -25,7 +25,7 @@
             </li>
 
             @can('roleadmin')
-            <li class="{{ Request::is('home') ? 'active' : '' }}">
+            <li class="{{ Request::is('user') ? 'active' : '' }}">
                 <a href="/user">
                     <i class="fa fa-tachometer"></i>
                     <span>User</span></a>
@@ -49,9 +49,7 @@
                         </li>
                     </ul>
             </li>
-            
-            {{-- <li class=""><a href="/alatukurs"><i class="fa fa-wrench"></i> <span>Alat Ukur</span></a></li>
-            <li class=""><a href="/alatukursr"><i class="fa fa-ban"></i> <span>Alat Ukur Rusak</span></a></li> --}}
+
             <li class="{{ Request::is('pics*') ? 'active' : '' }}">
                 <a href="/pics">
                     <i class="fa fa-users"></i>
@@ -82,8 +80,13 @@
                     <span>Riwayat Kalibrasi</span></a>
             </li>
 
-            <!-- <li class="active"><a href="{{ route('makers.index') }}"><i class="fa fa-link"></i> <span>Maker</span></a></li> -->
-            <!-- <li class="active"><a href="{{ route('departemens.index') }}"><i class="fa fa-link"></i> <span>Departemen</span></a></li> -->
+            <!-- <li class="active">
+                <a href="{{ route('makers.index') }}">
+                    <i class="fa fa-link"></i>
+                    <span>Maker</span></a></li> -->
+            <!-- <li class="active">
+                <a href="{{ route('departemens.index') }}">
+                    <i class="fa fa-link"></i> <span>Departemen</span></a></li> -->
         </ul>
         <!-- /.sidebar-menu -->
     </section>
