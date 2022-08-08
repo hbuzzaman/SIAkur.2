@@ -35,32 +35,32 @@
                             <h4>
                                 <i class="text-muted"></i>
                                 &nbsp;Nomor Seri: 
-                                <strong>{{ $akur->no_seri }}</strong>
+                                <p>&nbsp;<strong>{{ $akur->no_seri }}</strong></p>
                             </h4>
                             <h4>
                                 <i class="text-muted"></i>
                                 &nbsp;Nomor Registrasi: 
-                                <strong>{{ $akur->no_reg }}</strong>
+                                <p>&nbsp;<strong>{{ $akur->no_reg }}</strong></p>
                             </h4>
                             <h4>
                                 <i class="text-muted"></i>
                                 &nbsp;Range: 
-                                <strong>{{ $akur->range }}</strong>
+                                <p>&nbsp;<strong>{{ $akur->range }}</strong></p>
                             </h4>
                             <h4>
                                 <i class="text-muted"></i>
                                 &nbsp;Resolusi: 
-                                <strong>{{ $akur->resolusi }}</strong>
+                                <p>&nbsp;<strong>{{ $akur->resolusi }}</strong></p>
                             </h4>
                             <h4>
                                 <i class="text-muted"></i>
                                 &nbsp;Maker: 
-                                <strong>{{ $akur->maker->nama_maker }}</strong>
+                                <p>&nbsp;<strong>{{ $akur->maker->nama_maker }}</strong></p>
                             </h4>
                             <h4>
                                 <i class="text-muted"></i>
                                 &nbsp;PIC Alat:
-                                <strong>{{ $akur->pic->nama_pic }}</strong>
+                                <p>&nbsp;<strong>{{ $akur->pic->nama_pic }}</strong></p>
                             </h4>
                         </div>
 
@@ -68,32 +68,32 @@
                             <h4>
                                 <i class="text-muted"></i>
                                 Tanggal Kalibrasi: 
-                                <strong>{{ $akur->tgl_plan }}</strong>
+                                <p><strong>{{ $akur->tgl_plan }}</strong></p>
                             </h4>
                             <h4>
                                 <i class="text-muted"></i>
                                 Tanggal Efective: 
-                                <strong>{{ $akur->tgl_actual }}</strong>
+                                <p><strong>{{ $akur->tgl_actual }}</strong></p>
                             </h4>
                             <h4>
                                 <i class="text-muted"></i>
                                 Departemen: 
-                                <strong>{{ $akur->departemen->nama_departemen }}</strong>
+                                <p><strong>{{ $akur->departemen->nama_departemen }}</strong></p>
                             </h4>
                             <h4>
                                 <i class="text-muted"></i>
                                 Section: 
-                                <strong>{{ $akur->lokasi_alatukur->lokasi_alatukur }}</strong>
+                                <p><strong>{{ $akur->lokasi_alatukur->lokasi_alatukur }}</strong></p>
                             </h4>
                             <h4>
                                 <i class="text-muted"></i>
                                 Freq. Kalibrasi: 
-                                <strong>{{ $akur->frekuensi }}</strong>
+                                <p><strong>{{ $akur->frekuensi }}</strong></p>
                             </h4>
                             <h4>
                                 <i class="text-muted"></i>
                                 Riwayat Kalibrasi: 
-                                <strong>{{ $count }}</strong>
+                                <p><strong>{{ $count }}</strong></p>
                             </h4>
                         </div>
                     </div>
@@ -110,7 +110,7 @@
                 <div class="box-body">
                     <div class="text-center">
                         @foreach ($kb as $id)
-                        <img src="{{ asset('storage/'.$id->sertifikat) }}" alt="sertifikat" class="img-square" width="400" height="400">
+                        <img src="{{ asset('storage/'.$id->sertifikat) }}" alt="sertifikat" class="img-square" width="400" height="300">
                         @endforeach
                     </div>
                 </div>
@@ -120,7 +120,7 @@
         <div class="col-md-7">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Riwayat Kalibrasii</h3>
+                    <h3 class="box-title">Riwayat Kalibrasi</h3>
                 </div>
                 <div class="box-body">
                     {{-- <table id="p" class="dataTables_wrapper form-inline dt-bootstrap" style="width:100%"> --}}
@@ -128,7 +128,7 @@
                         <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Nama Alat Ukurr</th>
+                            <th>Nama Alat Ukur</th>
                             <th>Tanggal Kalibrasi</th>
                             <th>Tanggal Next Kalibrasi</th>
                             <th>Tanggal Sertifikat</th>

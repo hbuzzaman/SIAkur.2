@@ -12,21 +12,29 @@
     <div class="box">
 
         <div class="box-header">
-            <h3 class="box-title">Data Departemen</h3>
+            <h3 class="box-title">Data Cek Fisik</h3>
         </div>
 
         <div class="box-header">
-            <a onclick="addForm()" class="btn btn-primary" >Add Departemen</a>
+            <a onclick="addForm()" class="btn btn-primary" >Add Cek Fisik</a>
         </div>
 
 
         <!-- /.box-header -->
         <div class="box-body">
-            <table id="departemen-table" class="table table-striped">
+            <table id="cek_fisiks-table" class="table table-striped">
                 <thead>
                 <tr>
                     <th>No.</th>
-                    <th>Nama Departemen</th>
+                    <th>Nama Alat</th>
+                    <th>Nama PIC</th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>Judge</th>
+                    <th>Keterangan</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -36,7 +44,7 @@
         <!-- /.box-body -->
     </div>
 
-    @include('departemens.form')
+    @include('cek_fisiks.form')
 
 @endsection
 
@@ -66,13 +74,21 @@
     {{--</script>--}}
 
     <script type="text/javascript">
-        var table = $('#departemen-table').DataTable({
+        var table = $('#cek_fisiks-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('api.departemens') }}",
+            ajax: "{{ route('api.cek_fisiks') }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
-                {data: 'nama_departemen', name: 'nama_departemen'},
+                {data: 'nama_alat', name: 'nama_alat'},
+                {data: 'pic_id', name: 'pic_id'},
+                {data: 'satu', name: 'satu'},
+                {data: 'dua', name: 'dua'},
+                {data: 'tiga', name: 'tiga'},
+                {data: 'empat', name: 'empat'},
+                {data: 'lima', name: 'lima'},
+                {data: 'judge', name: 'judge'},
+                {data: 'keterangan', name: 'keterangan'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
         });
@@ -82,7 +98,7 @@
             $('input[name=_method]').val('POST');
             $('#modal-form').modal('show');
             $('#modal-form form')[0].reset();
-            $('.modal-title').text('Add Departemen');
+            $('.modal-title').text('Add Cek Fisik');
         }
 
         function editForm(id) {
@@ -90,15 +106,22 @@
             $('input[name=_method]').val('PATCH');
             $('#modal-form form')[0].reset();
             $.ajax({
-                url: "{{ url('departemens') }}" + '/' + id + "/edit",
+                url: "{{ url('cek_fisiks') }}" + '/' + id + "/edit",
                 type: "GET",
                 dataType: "JSON",
                 success: function(data) {
                     $('#modal-form').modal('show');
-                    $('.modal-title').text('Edit Departemen');
+                    $('.modal-title').text('Edit Cek Fisik');
 
                     $('#id').val(data.id);
-                    $('#nama_departemen').val(data.nama_departemen);
+                    $('#alatukur_id').val(data.alatukur_id);
+                    $('#check1').val(data.check1);
+                    $('#check2').val(data.check2);
+                    $('#check3').val(data.check3);
+                    $('#check4').val(data.check4);
+                    $('#check5').val(data.check5);
+                    $('#judge').val(data.judge);
+                    $('#keterangan').val(data.keterangan);
                 },
                 error : function() {
                     alert("Nothing Data");
@@ -118,7 +141,7 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then(function () {
                 $.ajax({
-                    url : "{{ url('departemens') }}" + '/' + id,
+                    url : "{{ url('cek_fisiks') }}" + '/' + id,
                     type : "POST",
                     data : {'_method' : 'DELETE', '_token' : csrf_token},
                     success : function(data) {
@@ -146,8 +169,8 @@
             $('#modal-form form').validator().on('submit', function (e) {
                 if (!e.isDefaultPrevented()){
                     var id = $('#id').val();
-                    if (save_method == 'add') url = "{{ url('departemens') }}";
-                    else url = "{{ url('departemens') . '/' }}" + id;
+                    if (save_method == 'add') url = "{{ url('cek_fisiks') }}";
+                    else url = "{{ url('cek_fisiks') . '/' }}" + id;
 
                     $.ajax({
                         url : url,

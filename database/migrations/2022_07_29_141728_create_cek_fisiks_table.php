@@ -15,7 +15,17 @@ class CreateCekFisiksTable extends Migration
     {
         Schema::create('cek_fisiks', function (Blueprint $table) {
             $table->id();
+            $table->integer('alatukur_id')->unsigned();
+            $table->integer('check1')->nullable();
+            $table->integer('check2')->nullable();
+            $table->integer('check3')->nullable();
+            $table->integer('check4')->nullable();
+            $table->integer('check5')->nullable();
+            $table->string('judge');
+            $table->text('keterangan')->nullable();
             $table->timestamps();
+
+            $table->foreign('alatukur_id')->references('id')->on('alatukurs')->onDelete('cascade');
         });
     }
 

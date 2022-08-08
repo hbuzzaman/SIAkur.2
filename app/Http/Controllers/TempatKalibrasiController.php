@@ -20,6 +20,7 @@ class TempatKalibrasiController extends Controller
 
     public function index()
     {
+        $tempat_kalibrasis = TempatKalibrasi::all();
         return view('tempat_kalibrasis.index');
     }
 

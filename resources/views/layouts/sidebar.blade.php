@@ -6,7 +6,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="{{ asset('user.png') }} " class="img-circle" alt="User Image">
+                <img src="{{ asset('RPA.png') }} " class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
                 <p>{{ \Auth::user()->name  }}</p>
@@ -27,7 +27,7 @@
             @can('roleadmin')
             <li class="{{ Request::is('user') ? 'active' : '' }}">
                 <a href="/user">
-                    <i class="fa fa-tachometer"></i>
+                    <i class="fa fa-user"></i>
                     <span>User</span></a>
             </li>
             @endcan
@@ -49,7 +49,9 @@
                         </li>
                     </ul>
             </li>
-
+            
+            {{-- <li class=""><a href="/alatukurs"><i class="fa fa-wrench"></i> <span>Alat Ukur</span></a></li>
+            <li class=""><a href="/alatukursr"><i class="fa fa-ban"></i> <span>Alat Ukur Rusak</span></a></li> --}}
             <li class="{{ Request::is('pics*') ? 'active' : '' }}">
                 <a href="/pics">
                     <i class="fa fa-users"></i>
@@ -76,17 +78,23 @@
 
             <li class="{{ Request::is('kalibrasis*') ? 'active' : '' }}">
                 <a href="/kalibrasis">
-                    <i class="fa fa-link"></i>
+                    <i class="fa fa-history"></i>
                     <span>Riwayat Kalibrasi</span></a>
             </li>
 
-            <!-- <li class="active">
-                <a href="{{ route('makers.index') }}">
-                    <i class="fa fa-link"></i>
-                    <span>Maker</span></a></li> -->
-            <!-- <li class="active">
-                <a href="{{ route('departemens.index') }}">
-                    <i class="fa fa-link"></i> <span>Departemen</span></a></li> -->
+            <li class="{{ Request::is('cek_fisiks*') ? 'active' : '' }}">
+                <a href="/cek_fisiks">
+                    <i class="fa fa-search"></i>
+                    <span>Cek Fisik</span></a>
+            </li>
+
+            <li class="{{ Request::is('master_jadwals*') ? 'active' : '' }}">
+                <a href="/master_jadwals">
+                    <i class="fa fa-calendar"></i>
+                    <span>Master Jadwal</span></a>
+            </li>
+            <!-- <li class="active"><a href="{{ route('makers.index') }}"><i class="fa fa-link"></i> <span>Maker</span></a></li> -->
+            <!-- <li class="active"><a href="{{ route('departemens.index') }}"><i class="fa fa-link"></i> <span>Departemen</span></a></li> -->
         </ul>
         <!-- /.sidebar-menu -->
     </section>

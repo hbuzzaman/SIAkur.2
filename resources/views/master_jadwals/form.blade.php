@@ -10,35 +10,16 @@
                     <h3 class="modal-title"></h3>
                 </div>
 
+
                 <div class="modal-body">
                     <input type="hidden" id="id" name="id">
 
-                    <div class="box-body">
                         <div class="form-group">
-                            <label >ID Karyawan</label>
-                            <input type="text" class="form-control" id="idkaryawan" name="idkaryawan"  autofocus required>
+                            <label >Picture</label>
+                            <input type="file" class="form-control" id="picture" name="picture">
                             <span class="help-block with-errors"></span>
                         </div>
 
-                        <div class="form-group">
-                            <label >Nama PIC</label>
-                            <input type="text" class="form-control" id="nama_pic" name="nama_pic"   required>
-                            <span class="help-block with-errors"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label >Departemen</label>
-                            {!! Form::select('departemen_id', $departemen, null, ['class' => 'form-control select', 'placeholder' => '-- Choose Departemen --', 'id' => 'departemen_id', 'required']) !!}
-                            <span class="help-block with-errors"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label >Foto</label>
-                            <input type="file" class="form-control" id="foto" name="foto">
-                            <span class="help-block with-errors"></span>
-                        </div>
-
-                    </div>
                     <!-- /.box-body -->
 
                 </div>

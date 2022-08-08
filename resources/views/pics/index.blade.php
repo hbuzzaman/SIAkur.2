@@ -1,6 +1,5 @@
 @extends('layouts.master')
 
-
 @section('top')
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
@@ -16,7 +15,6 @@
         <div class="box-header">
             <a onclick="addForm()" class="btn btn-primary">Add PIC</a>
         </div>
-
 
         <!-- /.box-header -->
         <div class="box-body">
@@ -42,7 +40,6 @@
 @endsection
 
 @section('bot')
-
     <!-- DataTables -->
     <script src=" {{ asset('assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }} "></script>
     <script src="{{ asset('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }} "></script>
@@ -109,11 +106,11 @@
                 }
             });
         }
-        
+
         function banned() {
             swal({
                 title: 'Oops...',
-                text: 'ora duwe akses',
+                text: 'You have no access',
                 type: 'error',
                 timer: '1500'
             })
