@@ -19,7 +19,6 @@
             <a onclick="addForm()" class="btn btn-primary" >Add Departemen</a>
         </div>
 
-
         <!-- /.box-header -->
         <div class="box-body">
             <table id="departemen-table" class="table table-striped">

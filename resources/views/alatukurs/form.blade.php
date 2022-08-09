@@ -109,7 +109,7 @@
                             <select name="pic_id" id="nama_pic" class="form-control">
                             <option value="">-- Choose PIC --</option>
                                 @foreach ($pic as $id)
-                                <option value="{{ $id->id }}">{{ $id->nama_pic}}</option>
+                                    <option value="{{ $id->id }}">{{ $id->nama_pic}}</option>
                                 @endforeach
                             </select>
                             <span class="text-danger with-errors" id="picError"></span>
