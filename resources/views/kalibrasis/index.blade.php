@@ -231,13 +231,10 @@
                                 timer: '1500'
                             })
                         },
-                        error : function(data){
-                            swal({
-                                title: 'Oops...',
-                                text: data.message,
-                                type: 'error',
-                                timer: '1500'
-                            })
+                        error:function (response) {
+                            $('#alatError').text(response.responseJSON.errors.alatukur_id);
+                            $('#tglkError').text(response.responseJSON.errors.tgl_kalibrasi);
+                            $('#tglnextError').text(response.responseJSON.errors.tgl_nextkalibrasi);
                         }
                     });
                     return false;

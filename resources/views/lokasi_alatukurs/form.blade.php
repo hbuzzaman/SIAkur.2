@@ -18,8 +18,8 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label >Lokasi Alat Ukur</label>
-                            <input type="text" class="form-control" id="lokasi_alatukur" name="lokasi_alatukur"  autofocus required>
-                            <span class="help-block with-errors"></span>
+                            <input type="text" class="form-control" id="lokasi_alatukur" name="lokasi_alatukur"  autofocus>
+                                <span class="text-danger with-errors" id="lokasiError"></span>
                         </div>
 
                     </div>

@@ -23,8 +23,9 @@
                                 <option value="{{ $id->id }}">{{ $id->nama_alat }} || {{ $id->no_seri }}</option>
                                 @endforeach
                             </select>
-                            <span class="help-block with-errors"></span>
+                                <span class="text-danger with-errors" id="namaError"></span>
                         </div>
+
                         <div class="form-group">
                             <label><strong>Cek Fisik</strong></label><br>
                             <label><input type="checkbox" name="check1" value="1"> 1</label>
@@ -39,7 +40,9 @@
                                 <option value="OK">OK</option>
                                 <option value="NG">NG</option>
                             </select >
+                            <span class="text-danger with-errors" id="judgeError"></span>
                         </div>
+
                         <div class="form-group">
                             <label >Keterangan</label>
                             <textarea name="keterangan" id="keterangan" class="form-control">

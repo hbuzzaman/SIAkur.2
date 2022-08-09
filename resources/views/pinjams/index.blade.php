@@ -235,13 +235,12 @@
                                 timer: '1500'
                             })
                         },
-                        error : function(data){
-                            swal({
-                                title: 'Oops...',
-                                text: data.message,
-                                type: 'error',
-                                timer: '1500'
-                            })
+                        error:function (response) {
+                            $('#namaError').text(response.responseJSON.errors.nama_peminjam);
+                            $('#alatError').text(response.responseJSON.errors.alatukur_id);
+                            $('#tglpError').text(response.responseJSON.errors.tgl_pinjam);
+                            $('#tglkError').text(response.responseJSON.errors.tgl_kembali);
+                            $('#departemenError').text(response.responseJSON.errors.departemen_id);
                         }
                     });
                     return false;

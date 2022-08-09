@@ -167,13 +167,8 @@
                                 timer: '1500'
                             })
                         },
-                        error : function(data){
-                            swal({
-                                title: 'Oops...',
-                                text: data.message,
-                                type: 'error',
-                                timer: '1500'
-                            })
+                        error:function (response) {
+                            $('#namaError').text(response.responseJSON.errors.nama_maker);
                         }
                     });
                     return false;

@@ -19,6 +19,7 @@
             <a onclick="addForm()" class="btn btn-primary" >Add Departemen</a>
         </div>
 
+
         <!-- /.box-header -->
         <div class="box-body">
             <table id="departemen-table" class="table table-striped">
@@ -166,13 +167,8 @@
                                 timer: '1500'
                             })
                         },
-                        error : function(data){
-                            swal({
-                                title: 'Oops...',
-                                text: data.message,
-                                type: 'error',
-                                timer: '1500'
-                            })
+                        error:function (response) {
+                            $('#namaError').text(response.responseJSON.errors.nama_departemen);
                         }
                     });
                     return false;

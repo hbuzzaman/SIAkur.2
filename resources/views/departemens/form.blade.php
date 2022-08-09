@@ -18,8 +18,8 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label >Nama Departemen</label>
-                            <input type="text" class="form-control" id="nama_departemen" name="nama_departemen"  autofocus required>
-                            <span class="help-block with-errors"></span>
+                            <input type="text" class="form-control" id="nama_departemen" name="nama_departemen"  autofocus>
+                                <span class="text-danger with-errors" id="namaError"></span>
                         </div>
 
                     </div>

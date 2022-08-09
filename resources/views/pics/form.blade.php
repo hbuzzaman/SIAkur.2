@@ -16,20 +16,20 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label >ID Karyawan</label>
-                            <input type="text" class="form-control" id="idkaryawan" name="idkaryawan"  autofocus required>
-                            <span class="help-block with-errors"></span>
+                            <input type="text" class="form-control" id="idkaryawan" name="idkaryawan"  autofocus>
+                            <span class="text-danger with-errors" id="idkError"></span>
                         </div>
 
                         <div class="form-group">
                             <label >Nama PIC</label>
-                            <input type="text" class="form-control" id="nama_pic" name="nama_pic"   required>
-                            <span class="help-block with-errors"></span>
+                            <input type="text" class="form-control" id="nama_pic" name="nama_pic">
+                            <span class="text-danger with-errors" id="namaError"></span>
                         </div>
 
                         <div class="form-group">
                             <label >Departemen</label>
-                            {!! Form::select('departemen_id', $departemen, null, ['class' => 'form-control select', 'placeholder' => '-- Choose Departemen --', 'id' => 'departemen_id', 'required']) !!}
-                            <span class="help-block with-errors"></span>
+                            {!! Form::select('departemen_id', $departemen, null, ['class' => 'form-control select', 'placeholder' => '-- Choose Departemen --', 'id' => 'departemen_id']) !!}
+                            <span class="text-danger with-errors" id="departemenError"></span>
                         </div>
 
                         <div class="form-group">

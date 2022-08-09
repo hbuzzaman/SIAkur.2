@@ -170,13 +170,8 @@
                                 timer: '1500'
                             })
                         },
-                        error : function(data){
-                            swal({
-                                title: 'Oops...',
-                                text: data.message,
-                                type: 'error',
-                                timer: '1500'
-                            })
+                        error:function (response) {
+                            $('#tempatError').text(response.responseJSON.errors.tempat_kalibrasi);
                         }
                     });
                     return false;

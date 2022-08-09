@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
@@ -13,7 +14,7 @@ class MasterJadwalController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('role:admin,staff');
+        $this->middleware('role:admin,staff,manager');
     }
     /**
      * Display a listing of the resource.
@@ -86,7 +87,7 @@ class MasterJadwalController extends Controller
         $masterjadwal = MasterJadwal::latest()
                 ->limit(1)
                 ->get();
-
+        // dd($masterjadwal);
         return view('master_jadwals.detail',  [
             'mj' => $masterjadwal]);
     }
@@ -177,10 +178,16 @@ class MasterJadwalController extends Controller
             return '<img class="rounded-square" width="50" height="50" src="'. $url .'" alt="">';
             })
             ->addColumn('action', function($masterjadwal){
-                return 
-                    // '<a href="#" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-eye-open"></i> Show</a>'
-                    '<a onclick="editForm('. $masterjadwal->id .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
-                    '<a onclick="deleteData('. $masterjadwal->id .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+                if (Auth::user()->role == 'manager'){
+                    return
+                    '<a onclick="banned()" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
+                    '<a onclick="banned()" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+                }
+                return
+                '<a href="alatukurs/'. $masterjadwal->id .'" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-eye-open"></i> Show</a> ' .
+                '<a onclick="editForm('. $masterjadwal->id .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
+                '<a onclick="deleteData('. $masterjadwal->id .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+            
             })
             ->rawColumns(['show_photo','action'])->make(true);
     }

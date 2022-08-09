@@ -22,7 +22,7 @@
                 <div class="box-body">
                     <div class="text-center">
                     @foreach ($mj as $id)
-                        <img src="{{ asset('storage/'.$mj->picture) }}" alt="picture" class="img-square">
+                        <img src="{{ asset('storage/'.$id->picture) }}" alt="picture" class="img-square">
                     @endforeach
                     </div>
                 <div>

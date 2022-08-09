@@ -24,19 +24,19 @@
                                 <option value="{{ $id->id }}">{{ $id->nama_alat }} || {{ $id->no_seri}} </option>
                                 @endforeach
                                 </select>
-                            <span class="help-block with-errors"></span>
+                                <span class="text-danger with-errors" id="alatError"></span>
                         </div>
 
                         <div class="form-group">
                             <label >Tanggal Kalibrasi</label>
-                            <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tgl_kalibrasi" name="tgl_kalibrasi"   required>
-                            <span class="help-block with-errors"></span>
+                            <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tgl_kalibrasi" name="tgl_kalibrasi">
+                                <span class="text-danger with-errors" id="tglkError"></span>
                         </div>
 
                         <div class="form-group">
                             <label >Tanggal Next Kalibrasi</label>
                             <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tgl_nextkalibrasi" name="tgl_nextkalibrasi">
-                            <span class="help-block with-errors"></span>
+                                <span class="text-danger with-errors" id="tglnextError"></span>
                         </div>
 
                         <div class="form-group">
