@@ -167,13 +167,8 @@
                                 timer: '1500'
                             })
                         },
-                        error : function(data){
-                            swal({
-                                title: 'Oops...',
-                                text: data.message,
-                                type: 'error',
-                                timer: '1500'
-                            })
+                        error:function (response) {
+                            $('#lokasiError').text(response.responseJSON.errors.lokasi_alatukur);
                         }
                     });
                     return false;

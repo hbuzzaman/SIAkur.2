@@ -18,8 +18,8 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label >Nama Maker</label>
-                            <input type="text" class="form-control" id="nama_maker" name="nama_maker"  autofocus required>
-                            <span class="help-block with-errors"></span>
+                            <input type="text" class="form-control" id="nama_maker" name="nama_maker"  autofocus>
+                            <span class="text-danger with-errors" id="namaError"></span>
                         </div>
 
                     </div>

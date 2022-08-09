@@ -17,6 +17,7 @@
 <style>
     #pinjams {
         font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        font-size: 12px;
         border-collapse: collapse;
         width: 100%;
     }
@@ -53,12 +54,12 @@
     @foreach($pinjams as $p)
         <tbody>
         <tr>
-            <td>{{ $c->id }}</td>
-            <td>{{ $c->nama_peminjam }}</td>
-            <td>{{ $c->nama_alat }}</td>
-            <td>{{ $c->tgl_pinjam }}</td>
-            <td>{{ $c->tgl_kembali }}</td>
-            <td>{{ $c->nama_departemen }}</td>
+            <td>{{ $p->id }}</td>
+            <td>{{ $p->nama_peminjam }}</td>
+            <td>{{ $p->alatukur->nama_alat }}</td>
+            <td>{{ $p->tgl_pinjam }}</td>
+            <td>{{ $p->tgl_kembali }}</td>
+            <td>{{ $p->departemen->nama_departemen }}</td>
         </tr>
         </tbody>
     @endforeach

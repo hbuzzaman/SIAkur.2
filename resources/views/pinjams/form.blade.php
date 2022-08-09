@@ -18,8 +18,8 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label >Nama Peminjam</label>
-                            <input type="text" class="form-control" id="nama_peminjam" name="nama_peminjam"  autofocus required>
-                            <span class="help-block with-errors"></span>
+                            <input type="text" class="form-control" id="nama_peminjam" name="nama_peminjam"  autofocus>
+                            <span class="text-danger with-errors" id="namaError"></span>
                         </div>
 
                         <div class="form-group">
@@ -30,24 +30,24 @@
                                 <option value="{{ $id->id }}">{{ $id->nama_alat }} || {{ $id->no_seri}} </option>
                                 @endforeach
                                 </select>
-                            <span class="help-block with-errors"></span>
+                                <span class="text-danger with-errors" id="alatError"></span>
                         </div>
 
                         <div class="form-group">
                             <label >Tanggal Pinjam</label>
-                            <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tgl_pinjam" name="tgl_pinjam"   required>
-                            <span class="help-block with-errors"></span>
+                            <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tgl_pinjam" name="tgl_pinjam">
+                            <span class="text-danger with-errors" id="tglpError"></span>
                         </div>
 
                         <div class="form-group">
                             <label >Tanggal Kembali</label>
-                            <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tgl_kembali" name="tgl_kembali"   required>
-                            <span class="help-block with-errors"></span>
+                            <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tgl_kembali" name="tgl_kembali">
+                            <span class="text-danger with-errors" id="tglkError"></span>
                         </div>
 
                         <div class="form-group">
-                            <!-- <label >Departemen</label>
-                            {!! Form::select('departemen_id', $departemen, null, ['class' => 'form-control select', 'placeholder' => '-- Choose Departemen --', 'id' => 'departemen_id', 'required']) !!}
+                            <label >Departemen</label>
+                            <!-- {!! Form::select('departemen_id', $departemen, null, ['class' => 'form-control select', 'placeholder' => '-- Choose Departemen --', 'id' => 'departemen_id', 'required']) !!}
                             <span class="help-block with-errors"></span> -->
                             <select name="departemen_id" id="nama_departemen" class="form-control">
                                 <option value="">-- Choose Departemen --</option>
@@ -55,6 +55,7 @@
                                 <option value="{{ $id }}">{{ $nama_departemen}}</option>
                                 @endforeach
                             </select>
+                            <span class="text-danger with-errors" id="departemenError"></span>
                         </div>
 
 
