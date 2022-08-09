@@ -88,7 +88,9 @@ class AlatukurController extends Controller
             'lokasi_alatukur_id' => 'required',
             'frekuensi'          => 'required',
             'gambar'             => 'mimes:jpg,jpeg,png|max:2000',
-            'pic_id'             => 'required'
+            'status'             => 'required',
+            'kondisi'             => 'required',
+            'pic_id'             => 'required',
             // 'sertifikat'         => '',
         ]);
 
