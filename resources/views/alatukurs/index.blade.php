@@ -128,6 +128,15 @@
             ]
         });
 
+        function banned() {
+            swal({
+                title: 'Oops...',
+                text: 'You have no access',
+                type: 'error',
+                timer: '1500'
+            })
+        }
+
         function addForm() {
             save_method = "add";
             $('input[name=_method]').val('POST');
@@ -228,13 +237,22 @@
                                 timer: '1500'
                             })
                         },
-                        error : function(data){
-                            swal({
-                                title: 'Oops...',
-                                text: data.message,
-                                type: 'error',
-                                timer: '1500'
-                            })
+                        error:function (response) {
+                                $('#namaError').text(response.responseJSON.errors.nama_alat);
+                                $('#nsError').text(response.responseJSON.errors.no_seri);
+                                $('#nrError').text(response.responseJSON.errors.no_reg);
+                                $('#rangeError').text(response.responseJSON.errors.range);
+                                $('#resolusiError').text(response.responseJSON.errors.resolusi);
+                                $('#makerError').text(response.responseJSON.errors.maker_id);
+                                $('#tglPError').text(response.responseJSON.errors.tgl_plan);
+                                $('#tglAError').text(response.responseJSON.errors.tgl_actual);
+                                $('#deptError').text(response.responseJSON.errors.departemen_id);
+                                $('#lokError').text(response.responseJSON.errors.lokasi_alatukur_id);
+                                $('#frekError').text(response.responseJSON.errors.frekuensi);
+                                $('#gambarError').text(response.responseJSON.errors.gambar);
+                                $('#kondisiError').text(response.responseJSON.errors.kondisi);
+                                $('#statusError').text(response.responseJSON.errors.status);
+                                $('#picError').text(response.responseJSON.errors.pic_id);
                         }
                     });
                     return false;

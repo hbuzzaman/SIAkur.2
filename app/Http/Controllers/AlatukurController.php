@@ -75,7 +75,7 @@ class AlatukurController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request , [
+        $validatedData = $request->validate([
             'nama_alat'          => 'required|string',
             'no_seri'            => 'required',
             'no_reg'             => 'required',
@@ -88,24 +88,23 @@ class AlatukurController extends Controller
             'lokasi_alatukur_id' => 'required',
             'frekuensi'          => 'required',
             'gambar'             => 'mimes:jpg,jpeg,png|max:2000',
+            'kondisi'            => 'required',
+            'status'             => 'required',
             'pic_id'             => 'required'
-            // 'sertifikat'         => '',
         ]);
 
-        $input = $request->all();
 
-        if($request->file('gambar')){
-            $g = Str::slug($request['nama_alat'], '-').'.'.$request->gambar->getClientOriginalExtension();
-            $input['gambar']=$request->file('gambar')->storeAs('alatukurs', $g);
+        if($validatedData['gambar']>0){
+            $g = Str::slug($validatedData['no_seri'], '-').'.'.$request->gambar->getClientOriginalExtension();
+            $validatedData['gambar']=$request->file('gambar')->storeAs('alatukurs', $g);
         }
 
-        Alatukur::create($input);
+        Alatukur::create($validatedData);
 
         return response()->json([
             'success' => true,
             'message' => 'Alat Ukur Created'
         ]);
-
     }
 
     /**
@@ -124,7 +123,7 @@ class AlatukurController extends Controller
         $kalibrasis = Kalibrasi::where('alatukur_id', '=', $alatukur->id)->get();
 
         // $new = $alatukur->created_at;
-        $shownew = Carbon::now()->subDays(5);
+        $shownew = Carbon::now()->subDays(90);
 
         return view('alatukurs.detail',  [
             'akur' => $alatukur,
@@ -171,7 +170,6 @@ class AlatukurController extends Controller
             'lokasi_alatukur_id' => 'required',
             'frekuensi'          => 'required',
             'gambar'             => '',
-            //'sertifikat'       => 'required',
         ]);
 
         $input = $request->all();
@@ -183,7 +181,7 @@ class AlatukurController extends Controller
                     File::delete($image_path);
             }
             // lalu insert foto baru dan jika foto tidak ada
-                $g =  Str::slug($request['nama_alat'], '-').'.'.$request->gambar->getClientOriginalExtension();
+                $g =  Str::slug($request['no_seri'], '-').'.'.$request->gambar->getClientOriginalExtension();
                 $input['gambar']=$request->file('gambar')->storeAs('alatukurs', $g);
         }
 
@@ -239,21 +237,14 @@ class AlatukurController extends Controller
                 }
                 $url = asset('storage/'.$alatukurz->gambar);
                 return '<img class="rounded-square" width="50" height="50" src="'. $url .'" alt="">';
-                })
-            // ->addColumn('show_sertifikat', function($alatukurz){
-            //     if ($alatukurz->sertifikat == NULL){
-            //         return 'No Image';
-            //     }
-            //     return '<img class="rounded-square" width="50" height="50" src="'. url($alatukurz->sertifikat) .'" alt="">';
-            // })
+            })
             ->addColumn('new', function($alatukurz){
                 $shownew = Carbon::now()->subDays(5);
                 if ($shownew <= $alatukurz->created_at){
                     return '<span class="label label-success">NEW</span>';
                 }
                 return '<span class="label label-primary">OLD</span>';
-                })
-
+            })
             ->addColumn('action', function($alatukurz){
                 if (Auth::user()->role == 'manager'){
                     return

@@ -16,94 +16,92 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label >Nama Alat</label>
-                            <input type="text" class="form-control" id="nama_alat" name="nama_alat"  autofocus required>
-                            <span class="help-block with-errors"></span>
+                            <input type="text" class="form-control" id="nama_alat" name="nama_alat"  autofocus >
+                            <span class="text-danger with-errors" id="namaError"></span>
                         </div>
 
                         <div class="form-group">
                             <label >Nomor Seri</label>
-                            <input type="text" class="form-control" id="no_seri" name="no_seri"   required>
-                            <span class="help-block with-errors"></span>
+                            <input type="text" class="form-control" id="no_seri" name="no_seri"   >
+                            <span class="text-danger with-errors" id="nsError"></span>
                         </div>
 
                         <div class="form-group">
                             <label >Nomor Registrasi</label>
-                            <input type="text" class="form-control" id="no_reg" name="no_reg"   required>
-                            <span class="help-block with-errors"></span>
+                            <input type="text" class="form-control" id="no_reg" name="no_reg"   >
+                            <span class="text-danger with-errors" id="nrError"></span>
                         </div>
 
                         <div class="form-group">
                             <label >Range</label>
-                            <input type="text" class="form-control" id="range" name="range"   required>
-                            <span class="help-block with-errors"></span>
+                            <input type="text" class="form-control" id="range" name="range"   >
+                            <span class="text-danger with-errors" id="rangeError"></span>
                         </div>
 
                         <div class="form-group">
                             <label >Resolusi</label>
-                            <input type="text" class="form-control" id="resolusi" name="resolusi"   required>
-                            <span class="help-block with-errors"></span>
+                            <input type="text" class="form-control" id="resolusi" name="resolusi"   >
+                            <span class="text-danger with-errors" id="resolusiError"></span>
                         </div>
 
                         <div class="form-group">
                             <label >Maker</label>
-                            {!! Form::select('maker_id', $maker, null, ['class' => 'form-control select', 'placeholder' => '-- Choose Maker --', 'id' => 'maker_id', 'required']) !!}
-                            <span class="help-block with-errors"></span>
+                            {!! Form::select('maker_id', $maker, null, ['class' => 'form-control select', 'placeholder' => '-- Choose Maker --', 'id' => 'maker_id']) !!}
+                            <span class="text-danger with-errors" id="makerError"></span>
                         </div>
 
                         <div class="form-group">
                             <label >Tanggal Plan</label>
-                            <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tgl_plan" name="tgl_plan"   required>
-                            <span class="help-block with-errors"></span>
+                            <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tgl_plan" name="tgl_plan">
+                            <span class="text-danger with-errors" id="tglPError"></span>
                         </div>
 
                         <div class="form-group">
                             <label >Tanggal Actual</label>
                             <input data-date-format='yyyy-mm-dd' type="text" class="form-control" id="tgl_actual" name="tgl_actual">
-                            <span class="help-block with-errors"></span>
+                            <span class="text-danger with-errors" id="tglAError"></span>
                         </div>
 
                         <div class="form-group">
                             <label >Departemen</label>
-                            {!! Form::select('departemen_id', $departemen, null, ['class' => 'form-control select', 'placeholder' => '-- Choose Departemen --', 'id' => 'departemen_id', 'required']) !!}
-                            <span class="help-block with-errors"></span>
+                            {!! Form::select('departemen_id', $departemen, null, ['class' => 'form-control select', 'placeholder' => '-- Choose Departemen --', 'id' => 'departemen_id']) !!}
+                            <span class="text-danger with-errors" id="deptError"></span>
                         </div>
 
                         <div class="form-group">
                             <label >Lokasi Alat Ukur</label>
-                            {!! Form::select('lokasi_alatukur_id', $lokasi_alatukur, null, ['class' => 'form-control select', 'placeholder' => '-- Choose Section --', 'id' => 'lokasi_alatukur_id', 'required']) !!}
-                            <span class="help-block with-errors"></span>
+                            {!! Form::select('lokasi_alatukur_id', $lokasi_alatukur, null, ['class' => 'form-control select', 'placeholder' => '-- Choose Section --', 'id' => 'lokasi_alatukur_id']) !!}
+                            <span class="text-danger with-errors" id="lokError"></span>
                         </div>
 
                         <div class="form-group">
                             <label >Frekuensi</label>
                             <input type="text" class="form-control" id="frekuensi" name="frekuensi" >
-                            <span class="help-block with-errors"></span>
+                            <span class="text-danger with-errors" id="frekError"></span>
                         </div>
 
                         <div class="form-group">
                             <label >Gambar</label>
                             <input type="file" class="form-control" id="gambar" name="gambar" >
-                            <span class="help-block with-errors"></span>
+                            <span class="text-danger with-errors" id="gambarError"></span>
                         </div>
 
                         <div class="form-group">
                             <label >Kondisi</label>
-                            <!-- <input type="text" class="form-control" id="status" name="status"> -->
                             <select name="kondisi" id="kondisi" class="form-control">
                                 <option value="OK">OK</option>
                                 <option value="Rusak">Rusak</option>
                             </select >
-                            <span class="help-block with-errors"></span>
+                            <span class="text-danger with-errors" id="kondisiError"></span>
                         </div>
 
                         <div class="form-group">
                             <label >Status</label>
-                            <!-- <input type="text" class="form-control" id="status" name="status"> -->
                             <select name="status" id="status" class="form-control">
                                 <option value="Reguler">Reguler</option>
                                 <option value="Spare">Spare</option>
                             </select >
-                            <span class="help-block with-errors"></span>
+                            <span class="text-danger with-errors" id="statusError"></span>
                         </div>
 
                         <div class="form-group">
@@ -113,16 +111,9 @@
                                 @foreach ($pic as $id)
                                 <option value="{{ $id->id }}">{{ $id->nama_pic}}</option>
                                 @endforeach
-`                           </select>
-                            <span class="help-block with-errors"></span>
+                            </select>
+                            <span class="text-danger with-errors" id="picError"></span>
                         </div>
-
-                        <!-- <div class="form-group">
-                            <label >Sertifikat</label>
-                            <input type="file" class="form-control" id="sertifikat" name="sertifikat" >
-                            <span class="help-block with-errors"></span>
-                        </div> -->
-
                     </div>
                     <!-- /.box-body -->
 
