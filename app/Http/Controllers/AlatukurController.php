@@ -91,7 +91,6 @@ class AlatukurController extends Controller
             'status'             => 'required',
             'kondisi'             => 'required',
             'pic_id'             => 'required',
-            // 'sertifikat'         => '',
         ]);
 
         $input = $request->all();
