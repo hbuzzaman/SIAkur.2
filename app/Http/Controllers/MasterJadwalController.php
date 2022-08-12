@@ -106,7 +106,7 @@ class MasterJadwalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MasterJadwal $masterjadwal)
+    public function update(Request $request, MasterJadwal $master_jadwal)
     {
 
         $this->validate($request, [
@@ -117,8 +117,8 @@ class MasterJadwalController extends Controller
 
         if ($request->hasFile('picture')){
             //jika fotonya ada, hapus
-            if (!$masterjadwal->picture == NULL){
-                $image_path = "storage/".$masterjadwal->picture;
+            if (!$master_jadwal->picture == NULL){
+                $image_path = "storage/".$master_jadwal->picture;
                 File::delete($image_path);
             }
             //lalu insert foto baru dan jika foto tidak ada
@@ -126,7 +126,7 @@ class MasterJadwalController extends Controller
             $input['picture']=$request->file('picture')->storeAs('masterjadwals', $p);
         }
 
-        $masterjadwal->update($input);
+        $master_jadwal->update($input);
 
         return response()->json([
             'success'    => true,
@@ -140,16 +140,16 @@ class MasterJadwalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MasterJadwal $masterjadwal)
+    public function destroy(MasterJadwal $master_jadwal)
     {
-        $image_path = "storage/".$masterjadwal->picture;
+        $image_path = "storage/".$master_jadwal->picture;
         // dd($image_path);
 
         if (file_exists($image_path)){
             File::delete($image_path);
         }
         
-        MasterJadwal::destroy($masterjadwal->id);
+        MasterJadwal::destroy($master_jadwal->id);
 
         return response()->json([
             'success'    => true,
