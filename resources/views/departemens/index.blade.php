@@ -153,7 +153,7 @@
                         url : url,
                         type : "POST",
                         //hanya untuk input data tanpa dokumen
-                        // data : $('#modal-form form').serialize(),
+//                      data : $('#modal-form form').serialize(),
                         data: new FormData($("#modal-form form")[0]),
                         contentType: false,
                         processData: false,

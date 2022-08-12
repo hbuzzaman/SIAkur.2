@@ -7,7 +7,6 @@
 @endsection
 
 @section('content')
-<marquee>Ini Tulisan Berjalan</marquee>
     <div class="box">
 
         <div class="box-header">
@@ -23,7 +22,7 @@
             <table id="users-table" class="table table-striped">
                 <thead>
                 <tr>
-                    <th >No.</th>
+                    <th>No.</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Role</th>

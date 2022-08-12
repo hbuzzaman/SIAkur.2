@@ -51,12 +51,7 @@ class MasterJadwalController extends Controller
         ]);
 
         $input = $request->all();
-
-        // if ($request->hasFile('sertifikat')){
-        //     $input['sertifikat'] = '/upload/sertifikat/'.str_slug($input['nama_alat'], '-').'.'.$request->sertifikat->getClientOriginalExtension();
-        //     $request->sertifikat->move(public_path('/upload/sertifikat/'), $input['sertifikat']);
-        // }
-
+        
         if($request->file('picture')){
             $p =  Str::slug($request['picture'], '-').'.'.$request->picture->getClientOriginalExtension();
             $input['picture']=$request->file('picture')->storeAs('masterjadwals', $p);
@@ -111,27 +106,27 @@ class MasterJadwalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, MasterJadwal $masterjadwal)
     {
 
         $this->validate($request, [
-            //'foto'        => 'required',
+            'picture'        => '',
         ]);
         
         $input = $request->all();
-        $masterj = MasterJadwal::findOrFail($id);
-
-        $input['picture'] = $masterj->picture;
 
         if ($request->hasFile('picture')){
-            if (!$masterj->picture == NULL){
-                unlink(public_path($masterj->picture));
+            //jika fotonya ada, hapus
+            if (!$masterjadwal->picture == NULL){
+                $image_path = "storage/".$masterjadwal->picture;
+                File::delete($image_path);
             }
-            $input['picture'] = '/upload/masterjadwals/'.str_slug($input['picture'], '-').'.'.$request->picture->getClientOriginalExtension();
-            $request->picture->move(public_path('/upload/masterjadwals/'), $input['picture']);
+            //lalu insert foto baru dan jika foto tidak ada
+            $p = Str::slug($request['picture'], '-').'.'.$request->picture->getClientOriginalExtension();
+            $input['picture']=$request->file('picture')->storeAs('masterjadwals', $p);
         }
 
-        $masterj->update($input);
+        $masterjadwal->update($input);
 
         return response()->json([
             'success'    => true,
@@ -147,13 +142,10 @@ class MasterJadwalController extends Controller
      */
     public function destroy(MasterJadwal $masterjadwal)
     {
-        // $pic = Pic::findOrFail($id);
-
         $image_path = "storage/".$masterjadwal->picture;
         // dd($image_path);
 
         if (file_exists($image_path)){
-            // Storage::delete('public/pics/'.$pic->foto);
             File::delete($image_path);
         }
         
@@ -184,7 +176,6 @@ class MasterJadwalController extends Controller
                     '<a onclick="banned()" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
                 }
                 return
-                '<a href="alatukurs/'. $masterjadwal->id .'" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-eye-open"></i> Show</a> ' .
                 '<a onclick="editForm('. $masterjadwal->id .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
                 '<a onclick="deleteData('. $masterjadwal->id .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
             

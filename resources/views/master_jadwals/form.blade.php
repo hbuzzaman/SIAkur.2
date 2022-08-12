@@ -15,9 +15,9 @@
                     <input type="hidden" id="id" name="id">
 
                         <div class="form-group">
-                            <label>&nbsp; Picture</label>
+                            <label>&nbsp; Jadwal</label>
                             <input type="file" class="form-control" id="picture" name="picture">
-                            <span class="help-block with-errors"></span>
+                            <span class="text-danger with-errors" id="pictureError"></span>
                         </div>
 
                     <!-- /.box-body -->
