@@ -15,7 +15,7 @@ class CreateMasterJadwalsTable extends Migration
     {
         Schema::create('master_jadwals', function (Blueprint $table) {
             $table->id();
-            $table->string('picture')->default(null);
+            $table->string('picture')->nullable();
             $table->timestamps();
         });
     }

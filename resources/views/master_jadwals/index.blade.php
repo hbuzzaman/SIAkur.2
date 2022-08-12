@@ -1,6 +1,5 @@
 @extends('layouts.master')
 
-
 @section('top')
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
@@ -16,7 +15,6 @@
         <div class="box-header">
             <a onclick="addForm()" class="btn btn-primary">Add Schedule</a>
         </div>
-
 
         <!-- /.box-header -->
         <div class="box-body">
@@ -101,6 +99,15 @@
             });
         }
 
+        function banned() {
+            swal({
+                title: 'Oops...',
+                text: 'You have no access',
+                type: 'error',
+                timer: '1500'
+            })
+        }
+
         function deleteData(id){
             var csrf_token = $('meta[name="csrf-token"]').attr('content');
             swal({
@@ -162,13 +169,8 @@
                                 timer: '1500'
                             })
                         },
-                        error : function(data){
-                            swal({
-                                title: 'Oops...',
-                                text: data.message,
-                                type: 'error',
-                                timer: '1500'
-                            })
+                        error:function (response) {
+                            $('#pictureError').text(response.responseJSON.errors.picture);
                         }
                     });
                     return false;
