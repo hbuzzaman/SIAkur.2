@@ -251,7 +251,7 @@ class AlatukurController extends Controller
                 if ($shownew <= $alatukurz->created_at){
                     return '<span class="label label-success">NEW</span>';
                 }
-                return '<span class="label label-primary">OLD</span>';
+                return '<span class="label label-primary">REGULER</span>';
                 })
 
             ->addColumn('action', function($alatukurz){
