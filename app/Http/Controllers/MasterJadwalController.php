@@ -178,7 +178,6 @@ class MasterJadwalController extends Controller
                 return
                 '<a onclick="editForm('. $masterjadwal->id .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
                 '<a onclick="deleteData('. $masterjadwal->id .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
-            
             })
             ->rawColumns(['show_photo','action'])->make(true);
     }

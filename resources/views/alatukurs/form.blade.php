@@ -116,13 +116,6 @@
                             </select>
                                 <span class="text-danger with-errors" id="picError"></span>
                         </div>
-
-                        <!-- <div class="form-group">
-                            <label >Sertifikat</label>
-                            <input type="file" class="form-control" id="sertifikat" name="sertifikat" >
-                            <span class="help-block with-errors"></span>
-                        </div> -->
-
                     </div>
                     <!-- /.box-body -->
 

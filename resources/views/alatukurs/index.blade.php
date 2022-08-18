@@ -160,6 +160,9 @@
                     $('#departemen_id').val(data.departemen_id);
                     $('#lokasi_alatukur_id').val(data.lokasi_alatukur_id);
                     $('#frekuensi').val(data.frekuensi);
+                    $('#kondisi').val(data.kondisi);
+                    $('#status').val(data.status);
+                    $('#nama_pic').val(data.pic_id);
                 },
                 error : function() {
                     alert("Nothing Data");
