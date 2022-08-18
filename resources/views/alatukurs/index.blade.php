@@ -21,7 +21,7 @@
         </div>
 
         <!-- /.box-header -->
-        <div class="box-body">
+        <div class="box-body table-responsive">
             <table id="alatukurs-table" class="table table-striped">
                 <thead>
                 <tr>

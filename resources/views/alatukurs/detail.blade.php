@@ -122,9 +122,9 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Riwayat Kalibrasi</h3>
                 </div>
-                <div class="box-body">
+                <div class="box-body table-responsive">
                     {{-- <table id="p" class="dataTables_wrapper form-inline dt-bootstrap" style="width:100%"> --}}
-                    <table id="p" class="table table-striped table-bordered table-responsive" style="width:100%">
+                    <table id="p" class="table table-striped table-bordered " style="width:100%">
                         <thead>
                         <tr>
                             <th>No.</th>

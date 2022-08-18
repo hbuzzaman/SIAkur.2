@@ -25,9 +25,8 @@
             <!-- <a onclick="addForm()" class="btn btn-primary pull-right" style="margin-top: -8px;">Add Kalibrasi</a> -->
         </div>
 
-
         <!-- /.box-header -->
-        <div class="box-body">
+        <div class="box-body table-responsive">
             <table id="kalibrasis-table" class="table table-striped">
                 <thead>
                 <tr>
@@ -54,7 +53,7 @@
 @section('bot')
 
     <!-- DataTables -->
-    <script src=" {{ asset('assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }} "></script>
+    <script src="{{ asset('assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }} "></script>
     <script src="{{ asset('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }} "></script>
 
     {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>--}}
@@ -155,7 +154,6 @@
                 success: function(data) {
                     $('#modal-form').modal('show');
                     $('.modal-title').text('Edit Kalibrasi');
-
                     $('#id').val(data.id);
                     $('#alatukur_id').val(data.alatukur_id);
                     $('#tgl_kalibrasi').val(data.tgl_kalibrasi);
