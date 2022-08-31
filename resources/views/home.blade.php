@@ -138,6 +138,45 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="box-body table-responsive">
+        {{-- <table id="p" class="dataTables_wrapper form-inline dt-bootstrap" style="width:100%"> --}}
+        <table id="p" class="table table-striped table-bordered " style="width:100%">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>Nama Alat Ukur</th>
+                <th>Tanggal Kalibrasi</th>
+                <th>Tanggal Next Kalibrasi</th>
+                <th>Tanggal Sertifikat</th>
+                <th>Sertifikat</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach ($kalibrasis as $kal)
+            <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $kal->alatukur->nama_alat }}</td>
+                <td>{{ $kal->tgl_kalibrasi }}</td>
+                    @if($kal->tgl_nextkalibrasi<=now())
+                    <td><span class="label label-danger">{{$kal->tgl_nextkalibrasi}}</span></td>
+                    @elseif( date('Y-m-d H:i:s', strtotime($kal->tgl_nextkalibrasi . ' -5 day')) < now() && now() < $kal->tgl_nextkalibrasi)
+                    <td><span class="label label-warning">{{$kal->tgl_nextkalibrasi}}</span></td>
+                    @else
+                    <td><span class="label label-primary">{{$kal->tgl_nextkalibrasi}}</span></td>
+                    @endif
+                
+                <td>{{ $kal->tgl_sertifikat }}</td>
+                <td><img class="rounded-square" width="50" height="50" src="{{asset('storage/'.$kal->sertifikat)}}" alt=""></td>
+                <td>{{ $kal->status }}</td>
+            </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+
 <!-- <div class="row">
     <div class="col-lg-3 col-xs-6">
         <div class="small-box bg-navy">

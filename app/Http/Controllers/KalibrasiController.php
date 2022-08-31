@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
+use Carbon\Carbon;
 use App\Kalibrasi;
 use App\Alatukur;
 use Illuminate\Http\Request;
@@ -68,11 +69,12 @@ class KalibrasiController extends Controller
         //     $input['sertifikat']=$request->file('sertifikat')->store('kalibrasi');
         // }
 
-        Kalibrasi::create($input);
+        $Kalibrasi = Kalibrasi::create($input);
 
         return response()->json([
-            'success' => true,
-            'message' => 'Riwayat Kalibrasi Created'
+            "success" => true,
+            "message" => "Riwayat Kalibrasi Created",
+            "data" => $Kalibrasi
         ]);
 
     }
@@ -164,7 +166,7 @@ class KalibrasiController extends Controller
 
     public function apiKalibrasis(){
         $kalibrasi = Kalibrasi::orderBy('id', 'desc')->get();
-
+        // SELECT * FROM siakur.kalibrasis  group by alatukur_id desc;
         return Datatables::of($kalibrasi)
         ->addIndexColumn()
         ->addColumn('nama_alat', function ($kalibrasi){
@@ -177,6 +179,24 @@ class KalibrasiController extends Controller
         $url = asset('storage/'.$kalibrasi->sertifikat);
         return '<img class="rounded-square" width="50" height="50" src="'. $url .'" alt="">';
         })
+
+        ->addColumn('tglnext', function ($kalibrasi){
+            // $next = 30;
+            $tgl = $kalibrasi->tgl_nextkalibrasi;
+            $now = Carbon::now(); //24
+            $min1m = Carbon::now()->addDays(5); //29
+            
+            if($now>=$tgl && $kalibrasi->status == "Proses"){
+                return
+                '<span class="label label-danger">'. $kalibrasi->tgl_nextkalibrasi .'</span>';
+            }else if($now<=$tgl){
+                return
+                '<span class="label label-warning">'. $kalibrasi->tgl_nextkalibrasi .'</span>';
+            }
+            return
+            '<span class="label label-primary">'. $kalibrasi->tgl_nextkalibrasi .'</span>';
+        })
+
         ->addColumn('action', function($kalibrasi){
             if (Auth::user()->role == 'manager'){
                 return
@@ -188,6 +208,6 @@ class KalibrasiController extends Controller
             '<a onclick="deleteData('. $kalibrasi->id .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
             
         })
-        ->rawColumns(['nama_alat','show_photo','action'])->make(true);
-}
+        ->rawColumns(['tglnext', 'nama_alat','show_photo','action'])->make(true);
+    }
 }

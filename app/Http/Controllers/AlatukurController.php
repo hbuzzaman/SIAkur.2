@@ -44,6 +44,7 @@ class AlatukurController extends Controller
         $pic = Pic::all();
 
         $alatukurz = Alatukur::all();
+        
         return view('alatukurs.index', compact('departemen','maker', 'lokasi_alatukur', 'pic'));
     }
 

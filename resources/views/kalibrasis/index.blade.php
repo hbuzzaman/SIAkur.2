@@ -127,7 +127,7 @@
                 {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
                 {data: 'nama_alat', name: 'nama_alat'},
                 {data: 'tgl_kalibrasi', name: 'tgl_kalibrasi'},
-                {data: 'tgl_nextkalibrasi', name: 'tgl_nextkalibrasi'},
+                {data: 'tglnext', name: 'tglnext'},
                 {data: 'tgl_sertifikat', name: 'tgl_sertifikat'},
                 {data: 'show_photo', name: 'show_photo'},
                 {data: 'status', name: 'status'},
