@@ -1,6 +1,5 @@
 @extends('layouts.master')
 
-
 @section('top')
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
@@ -9,7 +8,6 @@
     <link rel="stylesheet" href="{{ asset('assets/bower_components/bootstrap-daterangepicker/daterangepicker.css') }}">
     <!-- bootstrap datepicker -->
     <link rel="stylesheet" href="{{ asset('assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
-    {{--<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">--}}
     @include('sweet::alert')
     @endsection
 
@@ -22,7 +20,6 @@
 
         <div class="box-header">
             <a onclick="addForm()" class="btn btn-primary">Add Kalibrasi</a>
-            <!-- <a onclick="addForm()" class="btn btn-primary pull-right" style="margin-top: -8px;">Add Kalibrasi</a> -->
         </div>
 
         <!-- /.box-header -->

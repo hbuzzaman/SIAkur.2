@@ -4,8 +4,6 @@
 @endsection
 
 @section('content')
-
-
     <div class="row">
         <div class="box">
             <div class="box-body">
@@ -25,7 +23,6 @@
         <div class="small-box bg-aqua">
             <div class="inner">
                 <h3>{{ \App\User::count() }}</h3>
-
                 <p>Users</p>
             </div>
             <div class="icon">
@@ -79,8 +76,6 @@
     </div>
     <!-- ./col -->
 </div>
-
-
 
 <div class="row">
     <!-- ./col -->
