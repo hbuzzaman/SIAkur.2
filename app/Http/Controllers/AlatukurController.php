@@ -52,6 +52,12 @@ class AlatukurController extends Controller
     {   
         $alatukurz = Alatukur::where('kondisi', '=', 'Rusak')->get();
         
+        // return response()->json([
+        //     "success" => true,
+        //     "message" => "Product List",
+        //     "data" => $alatukurz
+        // ]);
+
         return view('alatukurs.rusak',[
             "rusak" => $alatukurz
         ]);

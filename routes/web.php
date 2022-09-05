@@ -37,7 +37,7 @@ Route::get('dashboard', function () {
     Route::resource('alatukurs','AlatukurController')->middleware('auth');
     Route::get('/apiAlatukurs','AlatukurController@apiAlatukurs')->name('api.alatukurs');
 
-    Route::get('alatukursr','AlatukurController@rusak')->name('alatukurrusak');
+    Route::get('alatukursr','AlatukurController@rusak')->name('alatukurrusak')->middleware('auth');
 
     Route::get('masterjadwal','MasterJadwalController@masterjadwal')->name('masterjadwalz');
 
