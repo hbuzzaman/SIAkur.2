@@ -63,5 +63,3 @@ Route::get('dashboard', function () {
 
     Route::resource('user', 'UserController')->middleware('auth');
     Route::get('/apiUsers', 'UserController@apiUsers')->name('api.users');
-
-
