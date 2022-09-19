@@ -179,18 +179,17 @@ class KalibrasiController extends Controller
         ->addColumn('tglnext', function ($kalibrasi){
             // $next = 30;
             $tgl = $kalibrasi->tgl_nextkalibrasi;
-            $now = Carbon::now(); //24
-            $min1m = Carbon::now()->addDays(5); //29
-            
-            if($now>=$tgl && $kalibrasi->status == "Proses"){
+            $now = Carbon::now(); //19
+            $min1m = Carbon::parse($tgl)->subDays(5); //14
+            if($tgl<=$now){
                 return
-                '<span class="label label-danger">'. $kalibrasi->tgl_nextkalibrasi .'</span>';
-            }else if($now<=$tgl){
+                '<span class="label label-danger">'. date("d-m-Y", strtotime($kalibrasi->tgl_nextkalibrasi)) .'</span>';
+            }else if($min1m<$now && $now<$tgl){
                 return
-                '<span class="label label-warning">'. $kalibrasi->tgl_nextkalibrasi .'</span>';
+                '<span class="label label-warning">'. date("d-m-Y", strtotime($kalibrasi->tgl_nextkalibrasi)) .'</span>';
             }
             return
-            '<span class="label label-primary">'. $kalibrasi->tgl_nextkalibrasi .'</span>';
+            '<span class="label label-primary">'. date("d-m-Y", strtotime($kalibrasi->tgl_nextkalibrasi)) .'</span>';
         })
 
         ->addColumn('action', function($kalibrasi){

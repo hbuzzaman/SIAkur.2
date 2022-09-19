@@ -267,9 +267,7 @@ class AlatukurController extends Controller
                 '<a href="alatukurs/'. $alatukurz->id .'" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-eye-open"></i> Show</a> ' .
                 '<a onclick="editForm('. $alatukurz->id .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
                 '<a onclick="deleteData('. $alatukurz->id .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
-            
             })
             ->rawColumns(['nama_maker', 'nama_departemen', 'lokasi_alatukur', 'show_photo','new', 'action'])->make(true);
     }
-    
 }

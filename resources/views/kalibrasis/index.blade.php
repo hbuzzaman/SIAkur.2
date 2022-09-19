@@ -30,10 +30,10 @@
                     <th>No.</th>
                     <th>Nama Alat Ukur</th>
                     <th>Tanggal Kalibrasi</th>
-                    <th>Tanggal Next Kalibrasi</th>
                     <th>Tanggal Sertifikat</th>
-                    <th>Sertifikat</th>
+                    <th>Tanggal Next Kalibrasi</th>
                     <th>Status</th>
+                    <th>Sertifikat</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -124,10 +124,10 @@
                 {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
                 {data: 'nama_alat', name: 'nama_alat'},
                 {data: 'tgl_kalibrasi', name: 'tgl_kalibrasi'},
-                {data: 'tglnext', name: 'tglnext'},
                 {data: 'tgl_sertifikat', name: 'tgl_sertifikat'},
-                {data: 'show_photo', name: 'show_photo'},
+                {data: 'tglnext', name: 'tglnext'},
                 {data: 'status', name: 'status'},
+                {data: 'show_photo', name: 'show_photo'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
         });

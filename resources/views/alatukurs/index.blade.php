@@ -140,6 +140,7 @@
             save_method = 'edit';
             $('input[name=_method]').val('PATCH');
             $('#modal-form form')[0].reset();
+            // document.getElementById('hhh').style.visibility="hidden"; //
             $.ajax({
                 url: "{{ url('alatukurs') }}" + '/' + id + "/edit",
                 type: "GET",

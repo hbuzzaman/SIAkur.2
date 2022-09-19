@@ -153,16 +153,15 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $kal->alatukur->nama_alat }}</td>
-                <td>{{ $kal->tgl_kalibrasi }}</td>
+                <td>{{ date("d-m-Y", strtotime($kal->tgl_kalibrasi))}}</td>
                     @if($kal->tgl_nextkalibrasi<=now())
-                    <td><span class="label label-danger">{{$kal->tgl_nextkalibrasi}}</span></td>
+                    <td><span class="label label-danger">{{date("d-m-Y", strtotime($kal->tgl_nextkalibrasi))}}</span></td>
                     @elseif( date('Y-m-d H:i:s', strtotime($kal->tgl_nextkalibrasi . ' -5 day')) < now() && now() < $kal->tgl_nextkalibrasi)
-                    <td><span class="label label-warning">{{$kal->tgl_nextkalibrasi}}</span></td>
+                    <td><span class="label label-warning">{{date("d-m-Y", strtotime($kal->tgl_nextkalibrasi))}}</span></td>
                     @else
-                    <td><span class="label label-primary">{{$kal->tgl_nextkalibrasi}}</span></td>
+                    <td><span class="label label-primary">{{date("d-m-Y", strtotime($kal->tgl_nextkalibrasi))}}</span></td>
                     @endif
-                
-                <td>{{ $kal->tgl_sertifikat }}</td>
+                <td>{{ date("d-m-Y", strtotime($kal->tgl_sertifikat))}}</td>
                 <td><img class="rounded-square" width="50" height="50" src="{{asset('storage/'.$kal->sertifikat)}}" alt=""></td>
                 <td>{{ $kal->status }}</td>
             </tr>

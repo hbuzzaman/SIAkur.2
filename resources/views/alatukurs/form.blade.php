@@ -106,7 +106,7 @@
                                 <span class="text-danger with-errors" id="statusError"></span>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" id="hhh">
                             <label >PIC Alat</label>
                             <select name="pic_id" id="nama_pic" class="form-control">
                             <option value="">-- Choose PIC --</option>
