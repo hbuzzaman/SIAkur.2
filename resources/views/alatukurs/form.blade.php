@@ -87,6 +87,12 @@
                         </div>
 
                         <div class="form-group">
+                            <label >Foto Cek Fisik</label>
+                            <input type="file" class="form-control" id="fotocf" name="fotocf" >
+                            <span class="help-block with-errors"></span>
+                        </div>
+
+                        <div class="form-group">
                             <label >Kondisi</label>
                             <!-- <input type="text" class="form-control" id="status" name="status"> -->
                             <select name="kondisi" id="kondisi" class="form-control">

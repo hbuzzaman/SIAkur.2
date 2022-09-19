@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use App\Departemen;
 use App\Maker;
 use App\Alatukur;
+use App\CekFisik;
 use App\LokasiAlatukur;
 use App\Kalibrasi;
 use App\Pic;
@@ -91,6 +92,7 @@ class AlatukurController extends Controller
             'lokasi_alatukur_id' => 'required',
             'frekuensi'          => 'required',
             'gambar'             => 'mimes:jpg,jpeg,png|max:2000',
+            'fotocf'             => 'mimes:jpg,jpeg,png|max:2000',
             'pic_id'             => 'required'
             // 'sertifikat'         => '',
         ]);
@@ -100,6 +102,10 @@ class AlatukurController extends Controller
         if($request->file('gambar')){
             $g = Str::slug($request['nama_alat'], '-').'.'.$request->gambar->getClientOriginalExtension();
             $input['gambar']=$request->file('gambar')->storeAs('alatukurs', $g);
+        }
+        if($request->file('fotocf')){
+            $p = Str::slug($request['no_seri'], '-').'.'.$request->gambar->getClientOriginalExtension();
+            $input['fotocf']=$request->file('fotocf')->storeAs('cekfisiks', $p);
         }
 
         Alatukur::create($input);
@@ -126,6 +132,8 @@ class AlatukurController extends Controller
         $riwayat = Kalibrasi::where('alatukur_id', '=', $alatukur->id)->count();
         $kalibrasis = Kalibrasi::where('alatukur_id', '=', $alatukur->id)->get();
 
+        $cf = CekFisik::where('alatukur_id', '=', $alatukur->id)->get();
+
         // $new = $alatukur->created_at;
         $shownew = Carbon::now()->subDays(5);
 
@@ -135,6 +143,7 @@ class AlatukurController extends Controller
             'count' => $riwayat,
             'new' => $shownew,
             'kalibrasis' => $kalibrasis,
+            'cf' => $cf
         ]);
         
     }

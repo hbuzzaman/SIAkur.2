@@ -115,11 +115,11 @@
 
                     $('#id').val(data.id);
                     $('#alatukur_id').val(data.alatukur_id);
-                    $('#check1').val(data.check1);
-                    $('#check2').val(data.check2);
-                    $('#check3').val(data.check3);
-                    $('#check4').val(data.check4);
-                    $('#check5').val(data.check5);
+                    $('#cekfisik1').val(data.check1);
+                    $('#cekfisik2').val(data.check2);
+                    $('#cekfisik3').val(data.check3);
+                    $('#cekfisik4').val(data.check4);
+                    $('#cekfisik5').val(data.check5);
                     $('#judge').val(data.judge);
                     $('#keterangan').val(data.keterangan);
                 },

@@ -27,6 +27,7 @@ class CreateAlatukursTable extends Migration
             $table->integer('lokasi_alatukur_id')->unsigned();
             $table->string('frekuensi');
             $table->string('gambar')->default(null);
+            $table->string('fotocf')->default(null);
             $table->string('kondisi');
             $table->string('status');
             $table->integer('pic_id')->unsigned();

@@ -17,47 +17,75 @@
 
                     <div class="box-body">
                         <div class="form-group">
+                            <label >Alat Ukur</label>
                             <select name="alatukur_id" id="alatukur" class="form-control">
                                 <option value="">-- Choose Alat Ukur --</option>
                                 @foreach ($alatukur as $id)
-                                <option value="{{ $id->id }}">{{ $id->nama_alat }} || {{ $id->no_seri }}</option>
+                                    <option value="{{ $id->id }}">{{ $id->nama_alat }} || {{ $id->no_seri }}</option>
                                 @endforeach
                             </select>
                                 <span class="text-danger with-errors" id="namaError"></span>
                         </div>
-
                         <div class="form-group">
-                            <label><strong>Cek Fisik</strong></label><br>
-                            <label><input type="checkbox" name="check1" value="1"> 1</label>
-                            <label><input type="checkbox" name="check2" value="2"> 2</label>
-                            <label><input type="checkbox" name="check3" value="3"> 3</label>
-                            <label><input type="checkbox" name="check4" value="4"> 4</label>
-                            <label><input type="checkbox" name="check5" value="5"> 5</label>
-                        </div>  
+                            <label>Cek fisik 1</label>
+                            <select name="check1" id="alatukur" class="form-control">
+                                <option value="">--Cek Fisik 1--</option>
+                                    <option value="1">OK</option>
+                                    <option value="0">NG</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Cek fisik 2</label>
+                            <select name="check2" id="alatukur" class="form-control">
+                                <option value="">--Cek Fisik 2--</option>
+                                    <option value="1">OK</option>
+                                    <option value="0">NG</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Cek fisik 3</label>
+                            <select name="check3" id="alatukur" class="form-control">
+                                <option value="">--Cek Fisik 3--</option>
+                                    <option value="1">OK</option>
+                                    <option value="0">NG</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Cek fisik 4</label>
+                            <select name="check4" id="alatukur" class="form-control">
+                                <option value="">--Cek Fisik 4--</option>
+                                    <option value="1">OK</option>
+                                    <option value="0">NG</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Cek fisik 5</label>
+                            <select name="check5" id="alatukur" class="form-control">
+                                <option value="">--Cek Fisik 5--</option>
+                                    <option value="1">OK</option>
+                                    <option value="0">NG</option>
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label >Judge</label>
                             <select name="judge" id="judge" class="form-control">
                                 <option value="OK">OK</option>
                                 <option value="NG">NG</option>
-                            </select >
+                            </select>
                             <span class="text-danger with-errors" id="judgeError"></span>
                         </div>
 
                         <div class="form-group">
                             <label >Keterangan</label>
-                            <textarea name="keterangan" id="keterangan" class="form-control">
-                            </textarea>
+                            <textarea name="keterangan" id="keterangan" class="form-control"></textarea>
                         </div>
                     </div>
                     <!-- /.box-body -->
-
                 </div>
-
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
-
             </form>
         </div>
         <!-- /.modal-content -->

@@ -97,9 +97,57 @@
                             </h4>
                         </div>
                     </div>
-
                 </div>
             </div>
+
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Cek FISIK</h3>
+                </div>
+                <div class="box-body">
+                    <div class="text-center">
+                        <img src="{{ asset('storage/'.$akur->fotocf) }}" alt="gambar" class="img-square" width="200" height="200">
+                    </div>
+                </div>
+            </div>
+
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Riwayat CEK FISIK</h3>
+                </div>
+                <div class="box-body table-responsive">
+                    {{-- <table id="p" class="dataTables_wrapper form-inline dt-bootstrap" style="width:100%"> --}}
+                    <table id="p" class="table table-striped table-bordered " style="width:100%">
+                        <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Nama Alat Ukur</th>
+                            <th>Cek1</th>
+                            <th>Cek2</th>
+                            <th>Cek3</th>
+                            <th>Cek4</th>
+                            <th>Cek5</th>
+                            <th>Judge</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($cf as $c)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $c->alatukur->nama_alat }}</td>
+                            <td>{{ $c->check1 }}</td>
+                            <td>{{ $c->check2 }}</td>
+                            <td>{{ $c->check3 }}</td>
+                            <td>{{ $c->check4 }}</td>
+                            <td>{{ $c->check5 }}</td>
+                            <td>{{ $c->judge }}</td>
+                        </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </div>
 
         <div class="col-md-7">
@@ -115,9 +163,7 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-7">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <h3 class="box-title">Riwayat Kalibrasi</h3>
@@ -153,7 +199,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
 

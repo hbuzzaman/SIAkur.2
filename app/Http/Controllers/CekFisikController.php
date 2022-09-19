@@ -152,46 +152,49 @@ class CekFisikController extends Controller
                 return $cek_fisiks->alatukur->pic->nama_pic;
             })
             ->addColumn('satu', function ($cek_fisiks){
-                if (!$cek_fisiks->check1 == null){
+                if ($cek_fisiks->check1 === null){
                     return
-                    " &radic;";
+                    "ng";
+                }else if($cek_fisiks->check1 === 0){
+                    return "NG";
                 }
-                return '';
+                return '&radic;';
             })
             ->addColumn('dua', function ($cek_fisiks){
-                if (!$cek_fisiks->check2 == null){
+                if ($cek_fisiks->check2 === null){
                     return
-                    " &radic;";
+                    " ";
+                }else if($cek_fisiks->check2 === 0){
+                    return "NG";
                 }
-                return '';
+                return '&radic;';
             })
             ->addColumn('tiga', function ($cek_fisiks){
-                if (!$cek_fisiks->check3 == null){
+                if ($cek_fisiks->check3 === null){
                     return
-                    " &radic;";
+                    " ";
+                }else if($cek_fisiks->check3 === 0){
+                    return "NG";
                 }
-                return '';
+                return ' &radic;';
             })
             ->addColumn('empat', function ($cek_fisiks){
-                if (!$cek_fisiks->check4 == null){
+                if ($cek_fisiks->check4 === null){
                     return
-                    " &radic;";
+                    " ";
+                }else if($cek_fisiks->check4 === 0){
+                    return "NG";
                 }
-                return '';
+                return ' &radic;';
             })
             ->addColumn('lima', function ($cek_fisiks){
-                if (!$cek_fisiks->check5 == null){
+                if ($cek_fisiks->check5 === null){
                     return
-                    " &radic;";
+                    " ";
+                }else if($cek_fisiks->check5 === 0){
+                    return "NG";
                 }
-                return '';
-            })
-            ->addColumn('satu', function ($cek_fisiks){
-                if (!$cek_fisiks->check1 == null){
-                    return
-                    " &radic;";
-                }
-                return '';
+                return ' &radic;';
             })
             ->addColumn('action', function($cek_fisiks){
                 return // '<a href="#" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-eye-open"></i> Show</a> ' .
