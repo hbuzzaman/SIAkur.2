@@ -44,4 +44,9 @@ class Alatukur extends Model
     {
         return $this->hasMany(CekFisik::class);
     }
+
+    // public function getRouteKeyName()
+    // {
+    //     return 'status';
+    // }
 }

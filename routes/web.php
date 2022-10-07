@@ -12,6 +12,7 @@
 */
 
 use \App\Http\Controllers\UserController;
+use \App\Http\Controllers\AlatukurController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -63,3 +64,5 @@ Route::get('dashboard', function () {
 
     Route::resource('user', 'UserController')->middleware('auth');
     Route::get('/apiUsers', 'UserController@apiUsers')->name('api.users');
+
+    Route::get('alatukur/{alatukurs:status}', [AlatukurController::class, 'status']);

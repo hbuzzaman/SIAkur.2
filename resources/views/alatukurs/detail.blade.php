@@ -116,7 +116,6 @@
                     <h3 class="box-title">Riwayat CEK FISIK</h3>
                 </div>
                 <div class="box-body table-responsive">
-                    {{-- <table id="p" class="dataTables_wrapper form-inline dt-bootstrap" style="width:100%"> --}}
                     <table id="p" class="table table-striped table-bordered " style="width:100%">
                         <thead>
                         <tr>
@@ -147,7 +146,6 @@
                     </table>
                 </div>
             </div>
-
         </div>
 
         <div class="col-md-7">
@@ -170,17 +168,17 @@
                 </div>
                 <div class="box-body table-responsive">
                     {{-- <table id="p" class="dataTables_wrapper form-inline dt-bootstrap" style="width:100%"> --}}
-                    <table id="p" class="table table-striped table-bordered " style="width:100%">
+                    <table id="pp" class="table table-striped table-bordered " style="width:100%">
                         <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>Nama Alat Ukur</th>
-                            <th>Tanggal Kalibrasi</th>
-                            <th>Tanggal Next Kalibrasi</th>
-                            <th>Tanggal Sertifikat</th>
-                            <th>Sertifikat</th>
-                            <th>Status</th>
-                        </tr>
+                            <tr>
+                                <th>No.</th>
+                                <th>Nama Alat Ukur</th>
+                                <th>Tanggal Kalibrasi</th>
+                                <th>Tanggal Next Kalibrasi</th>
+                                <th>Tanggal Sertifikat</th>
+                                <th>Sertifikat</th>
+                                <th>Status</th>
+                            </tr>
                         </thead>
                         <tbody>
                         @foreach ($kalibrasis as $kal)
@@ -207,8 +205,8 @@
 
 @section('bot')
     <!-- DataTables -->
-    <script src=" {{ asset('assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }} "></script>
-    <script src="{{ asset('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }} "></script>
+    <script src="{{ asset('assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
     
     <!-- InputMask -->
     <script src="{{ asset('assets/plugins/input-mask/jquery.inputmask.js') }}"></script>
@@ -230,6 +228,11 @@
     <script>
         $(document).ready( function () {
             $('#p').DataTable();
+        });
+    </script>
+    <script>
+        $(document).ready( function () {
+            $('#pp').DataTable();
         });
     </script>
 @endsection

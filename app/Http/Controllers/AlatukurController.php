@@ -64,6 +64,15 @@ class AlatukurController extends Controller
         ]);
     }
 
+    public function status($status)
+    {
+        # code...
+        $alatukurz = Alatukur::where('status', '=', $status)->get();
+        return view('alatukurs.status',[
+            "status" => $alatukurz
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
